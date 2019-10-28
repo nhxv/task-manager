@@ -13,14 +13,16 @@ export class TasksService {
       this.tasks = tasksData;
       this.tasksChanged.next(this.tasks);
     });
-
   }
 
   createTask(task: Task) {
     this.tasksAccessService.createTask(task).subscribe(() => {
-      this.tasks.push(task);
-      // emit the updated tasks
-      this.tasksChanged.next(this.tasks.slice());
+      this.tasksAccessService.getTaskList().subscribe((tasksData: Task[]) => {
+        // subscribe to get tasks data (specifically the primary key of each task) from the database
+        this.tasks = tasksData;
+        // emit the updated tasks
+        this.tasksChanged.next(this.tasks.slice());
+      });
     }, (error) => console.log(error));
   }
 
