@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Task} from '../task.model';
-import {TasksAccessService} from '../../data-access/tasks-access.service';
-import {Observable, Subscription} from 'rxjs';
+import {Subscription} from 'rxjs';
 import {TasksService} from '../tasks.service';
 
 @Component({
@@ -21,12 +20,13 @@ export class TaskListComponent implements OnInit, OnDestroy {
     });
   }
 
+  onDeleteTask(id: number) {
+    this.tasksService.deleteTask(id);
+  }
+
   ngOnDestroy(): void {
     this.taskListSub.unsubscribe();
   }
 
 
-  loadList() {
-
-  }
 }
