@@ -1,8 +1,8 @@
 package com.xv.mytodo.mytodo.rest;
 
+import com.xv.mytodo.mytodo.exception.ResourceNotFoundException;
 import com.xv.mytodo.mytodo.model.Task;
 import com.xv.mytodo.mytodo.repository.TaskRepository;
-import exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
