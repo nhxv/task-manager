@@ -16,7 +16,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.taskListSub = this.tasksService.tasksChanged.subscribe((tasks: Task[]) => {
-      this.taskList = tasks;
+      this.taskList = tasks.reverse();
     });
   }
 

@@ -35,6 +35,7 @@ export class TasksService {
           break;
         }
       }
+      // delete from tasks array when the task is deleted from the database
       this.tasks.splice(deletedIndex, 1);
       // emit the updated tasks
       this.tasksChanged.next(this.tasks.slice());
