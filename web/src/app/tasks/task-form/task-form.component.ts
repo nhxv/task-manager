@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Task} from '../task.model';
-import {TaskStorageService} from '../../data-storage/task-storage.service';
+import {TasksService} from '../tasks.service';
 
 @Component({
   selector: 'app-task-form',
@@ -11,7 +11,7 @@ import {TaskStorageService} from '../../data-storage/task-storage.service';
 export class TaskFormComponent implements OnInit {
   taskForm: FormGroup;
 
-  constructor(private taskStorageService: TaskStorageService) { }
+  constructor(private tasksService: TasksService) { }
 
   ngOnInit() {
     this.initForm();
@@ -28,7 +28,7 @@ export class TaskFormComponent implements OnInit {
 
   onSubmit() {
     const task = new Task(this.taskForm.get('name').value, this.taskForm.get('description').value);
-    this.taskStorageService.createTask(task).subscribe(data => console.log(data), error => console.log(error));
+    this.tasksService.createTask(task);
     this.taskForm.reset();
   }
 

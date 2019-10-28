@@ -3,12 +3,12 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
-export class TaskStorageService {
+export class TasksAccessService {
   private baseUrl = 'api/v1/tasks';
 
   constructor(private http: HttpClient) {}
 
-  getTask(id: number) : Observable<Object> {
+  getTask(id: number): Observable<Object> {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 

@@ -8,7 +8,6 @@ import { TaskDetailsComponent } from './tasks/task-details/task-details.componen
 import { TaskFormComponent } from './tasks/task-form/task-form.component';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
-import { TaskComponent } from './tasks/task-list/task/task.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -17,8 +16,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     TasksComponent,
     TaskListComponent,
     TaskDetailsComponent,
-    TaskFormComponent,
-    TaskComponent
+    TaskFormComponent
   ],
   imports: [
     BrowserModule,
