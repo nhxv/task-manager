@@ -6,6 +6,7 @@
           <div class="form-group">
             <label for="name">Task name:</label>
             <input type="text" id="name" class="form-control" formControlName="name">
+            <span class="text-danger" *ngIf="!taskForm.get('name').valid && taskForm.get('name').touched">Invalid name</span>
           </div>
         </div>
       </div>
@@ -14,12 +15,13 @@
           <div class="form-group">
             <label for="description">Description:</label>
             <textarea id="description" class="form-control" rows="4" formControlName="description"></textarea>
+            <span class="text-danger" *ngIf="!taskForm.get('description').valid && taskForm.get('description').touched">Invalid description</span>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-12">
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary" [disabled]="!taskForm.valid">Submit</button>
         </div>
       </div>
     </form>
