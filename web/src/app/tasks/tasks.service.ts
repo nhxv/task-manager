@@ -7,6 +7,7 @@ import {Subject} from 'rxjs';
 export class TasksService {
   tasks: Task[] = [];
   tasksChanged = new Subject<Task[]>();
+  taskEdit = new Subject<number>();
 
   constructor(private tasksAccessService: TasksAccessService) {
     tasksAccessService.getTaskList().subscribe((tasksData: Task[]) => {
@@ -26,15 +27,27 @@ export class TasksService {
     }, (error) => console.log(error));
   }
 
+  updateTask(id: number, task: Task) {
+    this.tasksAccessService.updateTask(id, task).subscribe(() => {
+      this.tasksAccessService.getTaskList().subscribe((tasksData: Task[]) => {
+        this.tasks = tasksData;
+        this.tasksChanged.next(this.tasks.slice());
+      });
+    });
+  }
+
+  getTask(id: number) {
+    for (let task of this.tasks) {
+      if (task.id === id) {
+        return task;
+      }
+    }
+  }
+
   deleteTask(id: number) {
     this.tasksAccessService.deleteTask(id).subscribe(() => {
-      let deletedIndex = 0;
-      for (let task of this.tasks) {
-        if (task.id === id) {
-          deletedIndex = this.tasks.indexOf(task);
-          break;
-        }
-      }
+      // get the task based on id given, then find the index of the task in tasks array
+      const deletedIndex = this.tasks.indexOf(this.getTask(id));
       // delete from tasks array when the task is deleted from the database
       this.tasks.splice(deletedIndex, 1);
       // emit the updated tasks

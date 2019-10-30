@@ -24,6 +24,11 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this.tasksService.deleteTask(id);
   }
 
+  onEditTask(id: number) {
+    // pass the id to task-form
+    this.tasksService.taskEdit.next(id);
+  }
+
   ngOnDestroy(): void {
     this.taskListSub.unsubscribe();
   }

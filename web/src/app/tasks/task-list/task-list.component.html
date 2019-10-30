@@ -1,9 +1,8 @@
 <div class="card mt-4" *ngFor="let task of taskList">
   <div class="card-body">
+    <button type="button" class="close text-danger" aria-label="Close" (click)="onDeleteTask(task.id)"><span aria-hidden="true">&times;</span></button>
     <h5>{{task.name}}</h5>
     <p class="card-text">{{task.description}}</p>
-    <button class="btn btn-dark mr-1">Details</button>
-    <button class="btn btn-warning mr-1">Update</button>
-    <button class="btn btn-danger" (click)="onDeleteTask(task.id)">Delete</button>
+    <button class="btn btn-warning" (click)="onEditTask(task.id)">Edit</button>
   </div>
 </div>
