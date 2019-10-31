@@ -3,8 +3,8 @@ import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
 
 
 const appRoutes: Routes = [
-  {path: '', redirectTo: '/task-management', pathMatch: 'full'},
-  {path: 'task-management', loadChildren: () => import('./tasks/tasks.module').then(m => m.TasksModule)},
+  {path: '', redirectTo: '/tasks', pathMatch: 'full'},
+  {path: 'tasks', loadChildren: () => import('./tasks/tasks.module').then(m => m.TasksModule)},
   {path: 'employees', loadChildren: () => import('./employees/employees.module').then(m => m.EmployeesModule)}
 ];
 

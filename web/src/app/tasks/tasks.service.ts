@@ -12,7 +12,7 @@ export class TasksService {
   constructor(private tasksAccessService: TasksAccessService) {
     tasksAccessService.getTaskList().subscribe((tasksData: Task[]) => {
       this.tasks = tasksData;
-      this.tasksChanged.next(this.tasks);
+      this.tasksChanged.next(this.tasks.slice());
     });
   }
 
