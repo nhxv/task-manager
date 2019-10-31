@@ -15,6 +15,9 @@ export class TaskListComponent implements OnInit, OnDestroy {
   constructor(private tasksService: TasksService) {}
 
   ngOnInit(): void {
+    // reload task list after navigate
+    this.taskList = this.tasksService.getTasks().reverse();
+    // reload task list after add/delete task
     this.taskListSub = this.tasksService.tasksChanged.subscribe((tasks: Task[]) => {
       this.taskList = tasks.reverse();
     });
@@ -30,8 +33,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    console.log('unsubscribe, stop getting task list');
     this.taskListSub.unsubscribe();
   }
-
-
 }
