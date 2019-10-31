@@ -31,7 +31,6 @@ export class TaskFormComponent implements OnInit {
       this.editMode = true;
       // get the task that needed to be edited from tasks service
       this.editedTask = this.tasksService.getTask(id);
-      console.log(this.editedTask.name, this.editedTask.description);
       this.taskForm.setValue({
         name: this.editedTask.name,
         description: this.editedTask.description
