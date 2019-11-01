@@ -6,6 +6,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {TasksRoutingModule} from './tasks-routing.module';
 import {TasksComponent} from './tasks.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import {TasksComponent} from './tasks.component';
     RouterModule,
     ReactiveFormsModule,
     TasksRoutingModule,
+    NgbModule,
     CommonModule
   ]
 })

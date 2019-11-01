@@ -22,11 +22,27 @@
               </div>
             </div>
           </div>
+          <div class="row mb-3 mt-1">
+            <div class="col-12">
+              <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-secondary" id="task-assign" type="button" ngbDropdownToggle>Assign task</button>
+                <div ngbDropdownMenu aria-labelledby="task-assign">
+                  <button ngbDropdownItem type="button" *ngFor="let employee of employeeList" (click)="onAssignEmployee(employee.name)">{{employee.name}}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="employeeNameSelected !== ''">
+            <div class="col-6">
+              <p>{{employeeNameSelected}}</p>
+            </div>
+          </div>
           <div class="row">
             <div class="col-12">
               <button type="submit" class="btn btn-primary" [disabled]="!taskForm.valid">{{editMode ? 'Update task' : 'Add task'}}</button>
             </div>
           </div>
+
         </form>
       </div>
     </div>

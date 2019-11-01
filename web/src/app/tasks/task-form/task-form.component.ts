@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Task} from '../task.model';
 import {TasksService} from '../tasks.service';
+import {EmployeesService} from '../../employees/employees.service';
+import {Employee} from '../../employees/employee.model';
 
 @Component({
   selector: 'app-task-form',
@@ -12,10 +14,15 @@ export class TaskFormComponent implements OnInit {
   taskForm: FormGroup;
   editMode: boolean = false;
   editedTask: Task;
+  employeeList: Employee[];
+  employeeNameSelected: string = '';
 
-  constructor(private tasksService: TasksService) { }
+  constructor(private tasksService: TasksService, private employeesService: EmployeesService) { }
 
   ngOnInit() {
+    this.employeesService.employeesChanged.subscribe((employees: Employee[]) => {
+      this.employeeList = employees;
+    });
     this.initForm();
   }
 
@@ -27,7 +34,7 @@ export class TaskFormComponent implements OnInit {
       description: new FormControl(description, Validators.required)
     });
     this.tasksService.taskEdit.subscribe((id: number) => {
-      // set edit mode to true when there is id
+      // set edit mode to true when there is id being passed in
       this.editMode = true;
       // get the task that needed to be edited from tasks service
       this.editedTask = this.tasksService.getTask(id);
@@ -36,6 +43,11 @@ export class TaskFormComponent implements OnInit {
         description: this.editedTask.description
       })
     });
+  }
+
+  onAssignEmployee(employeeName: string) {
+    console.log(employeeName);
+    this.employeeNameSelected = employeeName;
   }
 
   onSubmit() {
