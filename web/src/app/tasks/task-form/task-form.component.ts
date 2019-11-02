@@ -46,12 +46,11 @@ export class TaskFormComponent implements OnInit {
   }
 
   onAssignEmployee(employeeName: string) {
-    console.log(employeeName);
     this.employeeNameSelected = employeeName;
   }
 
   onSubmit() {
-    const taskInput = new Task(this.taskForm.get('name').value, this.taskForm.get('description').value);
+    const taskInput = new Task(this.taskForm.get('name').value, this.taskForm.get('description').value, this.employeesService.getEmployeeByName(this.employeeNameSelected));
     if (this.editMode) {
       // use editedTask.id and new edited taskInput
       this.tasksService.updateTask(this.editedTask.id, taskInput);

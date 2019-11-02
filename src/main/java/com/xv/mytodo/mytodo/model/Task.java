@@ -16,6 +16,11 @@ public class Task {
     @Column(name = "description")
     private String description;
 
+    // when delete a task, don't cascade delete the employee
+    @OneToOne
+    @JoinColumn(name = "employee_id") // foreign key
+    private Employee employee;
+
     public Task() {}
 
     public Task(String name, String description) {
@@ -47,12 +52,21 @@ public class Task {
         this.description = description;
     }
 
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
     @Override
     public String toString() {
         return "Task{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", employee=" + employee +
                 '}';
     }
 }

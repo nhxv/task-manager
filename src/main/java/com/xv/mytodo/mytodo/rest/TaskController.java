@@ -16,7 +16,6 @@ import java.util.Map;
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1")
 public class TaskController {
-
     private TaskRepository taskRepository;
 
     @Autowired
@@ -42,9 +41,11 @@ public class TaskController {
 
     @PutMapping("/tasks/{id}")
     public ResponseEntity<Task> updateTask(@PathVariable(value = "id") Long taskId, @Valid @RequestBody Task taskUpdate) throws ResourceNotFoundException {
+        System.out.println(taskUpdate);
         Task task = taskRepository.findById(taskId).orElseThrow(() -> new ResourceNotFoundException("Task not found for this id: " + taskId));
         task.setName(taskUpdate.getName());
         task.setDescription(taskUpdate.getDescription());
+        task.setEmployee(taskUpdate.getEmployee());
         return ResponseEntity.ok(taskRepository.save(task));
     }
 

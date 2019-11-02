@@ -2,5 +2,10 @@
   "/api/v1/tasks": {
     "target": "http://localhost:8080",
     "secure": false
+  },
+
+  "/api/v1/employees": {
+    "target": "http://localhost:8080",
+    "secure": false
   }
 }
