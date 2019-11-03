@@ -51,6 +51,7 @@ export class TaskFormComponent implements OnInit {
 
   onSubmit() {
     const taskInput = new Task(this.taskForm.get('name').value, this.taskForm.get('description').value, this.employeesService.getEmployeeByName(this.employeeNameSelected));
+    console.log('Task submission: ' + taskInput.name, taskInput.description, taskInput.employee);
     if (this.editMode) {
       // use editedTask.id and new edited taskInput
       this.tasksService.updateTask(this.editedTask.id, taskInput);

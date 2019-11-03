@@ -14,10 +14,12 @@
         <th scope="row">{{i + 1}}</th>
         <td>{{employee.name}}</td>
         <td>{{employee.email}}</td>
-        <td>{{employee.task}}</td>
+        <td>{{employee.task === null ? '' : employee.task.name}}</td>
       </tr>
       </tbody>
     </table>
   </div>
 </div>
+
+
 

@@ -1,10 +1,12 @@
 package com.xv.mytodo.mytodo.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "employee")
 public class Employee {
     @Id
@@ -19,9 +21,8 @@ public class Employee {
     private String email;
 
     // when delete an employee, don't cascade delete the task
-    // json ignore to avoid json recursion
+    // jsonManagedRef to avoid json recursion
     @OneToOne(mappedBy = "employee")
-    @JsonIgnore
     private Task task;
 
     public Employee() {}
