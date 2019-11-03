@@ -22,8 +22,8 @@ export class TaskFormComponent implements OnInit {
   ngOnInit() {
     this.employeesService.employeesChanged.subscribe((employees: Employee[]) => {
       this.employeeList = employees;
+      this.initForm();
     });
-    this.initForm();
   }
 
   private initForm() {
@@ -32,8 +32,10 @@ export class TaskFormComponent implements OnInit {
     this.taskForm = new FormGroup({
       name: new FormControl(name, Validators.required),
       description: new FormControl(description, Validators.required),
-      employee: new FormControl('', Validators.required)
+      employee: new FormControl(this.employeeList[0])
     });
+    console.log(this.employeeList[0]);
+
     this.tasksService.taskEdit.subscribe((id: number) => {
       // set edit mode to true when there is id being passed in
       this.editMode = true;
@@ -52,6 +54,9 @@ export class TaskFormComponent implements OnInit {
   }
 
   onSubmit() {
+    if (!this.employeeSelected && this.employeeList[0]) {
+      this.employeeSelected = this.employeeList[0];
+    }
     const taskInput = new Task(this.taskForm.get('name').value, this.taskForm.get('description').value, this.employeeSelected);
     console.log('Task submission: ' + taskInput.name, taskInput.description, taskInput.employee);
     if (this.editMode) {
@@ -62,6 +67,7 @@ export class TaskFormComponent implements OnInit {
     }
     this.editMode = false;
     this.taskForm.reset();
+    this.taskForm.get('employee').setValue(this.employeeList[0]);
   }
 
 }
