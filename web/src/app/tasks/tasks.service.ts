@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Task} from './task.model';
 import {TasksAccessService} from '../data-access/tasks-access.service';
-import {Subject} from 'rxjs';
+import {BehaviorSubject, Subject} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class TasksService {
   tasks: Task[] = [];
-  tasksChanged = new Subject<Task[]>();
+  tasksChanged = new BehaviorSubject<Task[]>(this.tasks.slice());
   taskEdit = new Subject<number>();
 
   constructor(private tasksAccessService: TasksAccessService) {
@@ -29,6 +29,7 @@ export class TasksService {
 
   updateTask(id: number, task: Task) {
     this.tasksAccessService.updateTask(id, task).subscribe(() => {
+      //get new task list, after task is updated from db
       this.tasksAccessService.getTaskList().subscribe((tasksData: Task[]) => {
         this.tasks = tasksData;
         this.tasksChanged.next(this.tasks.slice());
@@ -50,11 +51,11 @@ export class TasksService {
 
   deleteTask(id: number) {
     this.tasksAccessService.deleteTask(id).subscribe(() => {
-      // get the task based on id given, then find the index of the task in tasks array
+      // get task based on id given, then find index of task in tasks array
       const deletedIndex = this.tasks.indexOf(this.getTask(id));
-      // delete from tasks array when the task is deleted from the database
+      // delete from tasks array, after knowing task was deleted from database
       this.tasks.splice(deletedIndex, 1);
-      // emit the updated tasks
+      // emit updated tasks
       this.tasksChanged.next(this.tasks.slice());
     });
   }

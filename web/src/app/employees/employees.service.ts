@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Employee} from './employee.model';
-import {BehaviorSubject} from 'rxjs';
 import {EmployeesAccessService} from '../data-access/employees-access.service';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class EmployeesService {

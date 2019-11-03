@@ -15,7 +15,7 @@ export class TaskFormComponent implements OnInit {
   editMode: boolean = false;
   editedTask: Task;
   employeeList: Employee[];
-  employeeNameSelected: string = '';
+  employeeSelected: Employee = null;
 
   constructor(private tasksService: TasksService, private employeesService: EmployeesService) { }
 
@@ -31,7 +31,8 @@ export class TaskFormComponent implements OnInit {
     let description = '';
     this.taskForm = new FormGroup({
       name: new FormControl(name, Validators.required),
-      description: new FormControl(description, Validators.required)
+      description: new FormControl(description, Validators.required),
+      employee: new FormControl('', Validators.required)
     });
     this.tasksService.taskEdit.subscribe((id: number) => {
       // set edit mode to true when there is id being passed in
@@ -40,17 +41,18 @@ export class TaskFormComponent implements OnInit {
       this.editedTask = this.tasksService.getTask(id);
       this.taskForm.setValue({
         name: this.editedTask.name,
-        description: this.editedTask.description
+        description: this.editedTask.description,
+        employee: this.editedTask.employee.name
       })
     });
   }
 
-  onAssignEmployee(employeeName: string) {
-    this.employeeNameSelected = employeeName;
+  onAssignEmployee(employee: Employee) {
+    this.employeeSelected = employee;
   }
 
   onSubmit() {
-    const taskInput = new Task(this.taskForm.get('name').value, this.taskForm.get('description').value, this.employeesService.getEmployeeByName(this.employeeNameSelected));
+    const taskInput = new Task(this.taskForm.get('name').value, this.taskForm.get('description').value, this.employeeSelected);
     console.log('Task submission: ' + taskInput.name, taskInput.description, taskInput.employee);
     if (this.editMode) {
       // use editedTask.id and new edited taskInput

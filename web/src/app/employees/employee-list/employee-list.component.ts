@@ -1,24 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {EmployeesService} from '../employees.service';
 import {Employee} from '../employee.model';
 import {Subscription} from 'rxjs';
-import {TasksService} from '../../tasks/tasks.service';
 
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.css']
 })
-export class EmployeeListComponent implements OnInit {
+export class EmployeeListComponent implements OnInit, OnDestroy {
   employeeList: Employee[] = [];
   employeeListSub: Subscription;
 
-  constructor(private employeesService: EmployeesService, private tasksService: TasksService) { }
+  constructor(private employeesService: EmployeesService) { }
 
   ngOnInit() {
-    this.employeesService.employeesChanged.subscribe((employees: Employee[]) => {
+    this.employeeListSub = this.employeesService.employeesChanged.subscribe((employees: Employee[]) => {
       this.employeeList = employees;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.employeeListSub.unsubscribe();
   }
 
 }
