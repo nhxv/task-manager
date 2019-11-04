@@ -34,17 +34,23 @@ export class TaskFormComponent implements OnInit {
       description: new FormControl(description, Validators.required),
       employee: new FormControl(this.employeeList[0])
     });
-    console.log(this.employeeList[0]);
 
     this.tasksService.taskEdit.subscribe((id: number) => {
       // set edit mode to true when there is id being passed in
       this.editMode = true;
       // get the task that needed to be edited from tasks service
       this.editedTask = this.tasksService.getTask(id);
+      // find employee index in dropdown
+      let index = 0;
+      for (let employee of this.employeeList) {
+        if (employee.id === this.editedTask.employee.id) {
+          index = employee.id;
+        }
+      }
       this.taskForm.setValue({
         name: this.editedTask.name,
         description: this.editedTask.description,
-        employee: this.editedTask.employee.name
+        employee: this.employeeList[0]
       })
     });
   }
@@ -54,6 +60,7 @@ export class TaskFormComponent implements OnInit {
   }
 
   onSubmit() {
+    // auto select first employee
     if (!this.employeeSelected && this.employeeList[0]) {
       this.employeeSelected = this.employeeList[0];
     }
