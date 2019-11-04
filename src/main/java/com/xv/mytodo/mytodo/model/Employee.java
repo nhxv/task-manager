@@ -22,7 +22,7 @@ public class Employee {
 
     // when delete an employee, don't cascade delete the task
     // jsonManagedRef to avoid json recursion
-    @OneToOne(mappedBy = "employee")
+    @OneToOne(mappedBy = "employee", optional = false)
     private Task task;
 
     public Employee() {}

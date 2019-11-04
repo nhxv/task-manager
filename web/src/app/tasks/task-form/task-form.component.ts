@@ -67,22 +67,22 @@ export class TaskFormComponent implements OnInit {
     if (!this.employeeSelected && this.employeeList[0]) {
       this.employeeSelected = this.employeeList[0];
     }
-
-    // create task object for submission
-    const taskInput = new Task(this.taskForm.get('name').value, this.taskForm.get('description').value, this.employeeSelected);
-
+    // to avoid violate db relationship
+    this.employeeSelected.task = null;
     // send new task-employee relationship to employee service
     this.employeesService.updateEmployee(this.employeeSelected.id, this.employeeSelected);
-    console.log('Update employee: ', this.employeeSelected.id, this.employeeSelected);
+    // create task object for submission
+    const taskInput = new Task(this.taskForm.get('name').value, this.taskForm.get('description').value, this.employeeSelected);
 
     //if edit mode update task, create task otherwise
     if (this.editMode) {
       // use editedTask.id and new edited taskInput
+      console.log('Update task info: ' + JSON.stringify(taskInput));
       this.tasksService.updateTask(this.editedTask.id, taskInput);
     } else {
+      console.log('Create task info: ' + JSON.stringify(taskInput));
       this.tasksService.createTask(taskInput);
     }
-
     // reset the form
     this.editMode = false;
     this.taskForm.reset();

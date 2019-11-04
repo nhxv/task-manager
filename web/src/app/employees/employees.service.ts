@@ -24,8 +24,8 @@ export class EmployeesService {
     });
   }
 
-  updateEmployee(id: number, employee: Employee) {
-    this.employeesAccessService.updateEmployee(id, employee).subscribe(() => {
+  updateEmployee(id: number, employeeUpdate: Employee) {
+    this.employeesAccessService.updateEmployee(id, employeeUpdate).subscribe(() => {
       this.employeesAccessService.getEmployeeList().subscribe((employeeData: Employee[]) => {
         this.employees = employeeData;
         this.employeesChanged.next(this.employees.slice());
@@ -46,11 +46,10 @@ export class EmployeesService {
     return this.employees.slice();
   }
 
-  getEmployeeByName(employeeName: string) {
-    // need to change to get by Id
+  getEmployeeIndex(id: number) {
     for (let employee of this.employees) {
-      if (employee.name === employeeName) {
-        return employee;
+      if (employee.id === id) {
+        return this.employees.indexOf(employee);
       }
     }
   }

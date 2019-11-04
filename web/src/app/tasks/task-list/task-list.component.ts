@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Task} from '../task.model';
 import {Subscription} from 'rxjs';
 import {TasksService} from '../tasks.service';
+import {EmployeesService} from '../../employees/employees.service';
 
 @Component({
   selector: 'app-task-list',
@@ -12,7 +13,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
   taskList: Task[];
   taskListSub: Subscription;
 
-  constructor(private tasksService: TasksService) {}
+  constructor(private tasksService: TasksService, private employeesService: EmployeesService) {}
 
   ngOnInit(): void {
     // reload task list after navigate
@@ -25,6 +26,12 @@ export class TaskListComponent implements OnInit, OnDestroy {
   }
 
   onDeleteTask(id: number) {
+    for (let task of this.taskList) {
+      if (task.id === id) {
+        console.log('Update employee: ' + task.employee.id, task.employee);
+        this.employeesService.updateEmployee(task.employee.id, task.employee);
+      }
+    }
     this.tasksService.deleteTask(id);
   }
 
