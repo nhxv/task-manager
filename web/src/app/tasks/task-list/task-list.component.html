@@ -1,13 +1,12 @@
-<div class="card mt-4 shadow-lg border-0 rounded-0" *ngFor="let task of taskList">
-  <div class="card-body">
+<div class="card mb-4 shadow-lg border-0 rounded-0" *ngFor="let task of taskList">
+  <div class="card-body mb-0">
     <button type="button" class="close text-danger" aria-label="Close" style="outline: none;" (click)="onDeleteTask(task.id)"><span aria-hidden="true">&times;</span></button>
-    <h5 class="card-title">{{task.name}}</h5>
-    <p class="card-text">{{task.description}}</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Employee: {{task.employee.name}}</li>
-  </ul>
-  <div class="card-body">
+    <h4 class="card-title">{{task.name}}</h4>
+    <hr class="text-primary">
+    <h6>Description:</h6>
+    <p>{{task.description}}</p>
+    <h6>Employee:</h6>
+    <p>{{task.employee.name}}</p>
     <button class="btn btn-warning rounded-0" type="button" (click)="onEditTask(task.id)">Edit task</button>
   </div>
 </div>

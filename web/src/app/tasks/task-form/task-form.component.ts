@@ -40,17 +40,20 @@ export class TaskFormComponent implements OnInit {
       this.editMode = true;
       // get the task that needed to be edited from tasks service
       this.editedTask = this.tasksService.getTask(id);
-      // find employee index in dropdown
+      // find employee index in dropdown list
       let index = 0;
       for (let employee of this.employeeList) {
         if (employee.id === this.editedTask.employee.id) {
-          index = employee.id;
+          index = this.employeeList.indexOf(employee);
         }
       }
+      // set value of employee selected, to employee of edited task
+      this.employeeSelected = this.editedTask.employee;
+      // set value of edited task to form
       this.taskForm.setValue({
         name: this.editedTask.name,
         description: this.editedTask.description,
-        employee: this.employeeList[0]
+        employee: this.employeeList[index]
       })
     });
   }
@@ -60,7 +63,7 @@ export class TaskFormComponent implements OnInit {
   }
 
   onSubmit() {
-    // auto select first employee
+    // auto select first employee if none is selected
     if (!this.employeeSelected && this.employeeList[0]) {
       this.employeeSelected = this.employeeList[0];
     }
@@ -75,6 +78,7 @@ export class TaskFormComponent implements OnInit {
     this.editMode = false;
     this.taskForm.reset();
     this.taskForm.get('employee').setValue(this.employeeList[0]);
+    this.employeeSelected = null;
   }
 
 }
