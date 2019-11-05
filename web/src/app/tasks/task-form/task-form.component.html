@@ -26,7 +26,7 @@
             <div class="col-12">
               <label>Employee:</label>
               <br>
-              <div class="d-inline-block mb-2">
+              <div class="d-inline-block">
                 <select class="btn border rounded-0" (ngModelChange)="onAssignEmployee($event)" formControlName="employee">
                   <option *ngFor="let employee of employeeList" [ngValue]="employee">{{employee.name}}</option>
                 </select>
@@ -35,7 +35,7 @@
           </div>
           <div class="row">
             <div class="col-12">
-              <button type="submit" class="btn btn-primary rounded-0" [disabled]="!taskForm.valid">{{editMode ? 'Update task' : 'Add task'}}</button>
+              <button type="submit" class="btn btn-primary rounded-0 mt-1" [disabled]="!taskForm.valid">{{editMode ? 'Update task' : 'Add task'}}</button>
             </div>
           </div>
 

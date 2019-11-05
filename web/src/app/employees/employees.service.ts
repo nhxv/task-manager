@@ -33,6 +33,13 @@ export class EmployeesService {
     });
   }
 
+  changeEmployeeTask() {
+    this.employeesAccessService.getEmployeeList().subscribe((employeeData: Employee[]) => {
+      this.employees = employeeData;
+      this.employeesChanged.next(this.employees.slice());
+    });
+  }
+
   deleteEmployee(id: number) {
     this.employeesAccessService.deleteEmployee(id).subscribe(() => {
       this.employeesAccessService.getEmployeeList().subscribe((employeeData: Employee[]) => {
@@ -40,17 +47,5 @@ export class EmployeesService {
         this.employeesChanged.next(this.employees.slice());
       });
     });
-  }
-
-  getEmployees() {
-    return this.employees.slice();
-  }
-
-  getEmployeeIndex(id: number) {
-    for (let employee of this.employees) {
-      if (employee.id === id) {
-        return this.employees.indexOf(employee);
-      }
-    }
   }
 }

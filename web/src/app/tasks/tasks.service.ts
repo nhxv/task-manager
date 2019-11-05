@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Task} from './task.model';
 import {TasksAccessService} from '../data-access/tasks-access.service';
 import {BehaviorSubject, Subject} from 'rxjs';
+import {EmployeesService} from '../employees/employees.service';
 
 @Injectable({providedIn: 'root'})
 export class TasksService {
@@ -9,7 +10,7 @@ export class TasksService {
   tasksChanged = new BehaviorSubject<Task[]>(this.tasks.slice());
   taskEdit = new Subject<number>();
 
-  constructor(private tasksAccessService: TasksAccessService) {
+  constructor(private tasksAccessService: TasksAccessService, private employeesService: EmployeesService) {
     tasksAccessService.getTaskList().subscribe((tasksData: Task[]) => {
       this.tasks = tasksData;
       this.tasksChanged.next(this.tasks.slice());
@@ -24,6 +25,8 @@ export class TasksService {
         // emit the updated tasks
         this.tasksChanged.next(this.tasks.slice());
       });
+      // let employees service know that new task is created
+      this.employeesService.changeEmployeeTask();
     }, (error) => console.log(error));
   }
 
@@ -34,6 +37,9 @@ export class TasksService {
         this.tasks = tasksData;
         this.tasksChanged.next(this.tasks.slice());
       });
+
+      //let employees service knows that tasks is updated
+      this.employeesService.changeEmployeeTask();
     });
   }
 
@@ -57,6 +63,9 @@ export class TasksService {
       this.tasks.splice(deletedIndex, 1);
       // emit updated tasks
       this.tasksChanged.next(this.tasks.slice());
+
+      // let employees service know that task is deleted
+      this.employeesService.changeEmployeeTask();
     });
   }
 }

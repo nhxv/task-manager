@@ -26,12 +26,6 @@ export class TaskListComponent implements OnInit, OnDestroy {
   }
 
   onDeleteTask(id: number) {
-    for (let task of this.taskList) {
-      if (task.id === id) {
-        console.log('Update employee: ' + task.employee.id, task.employee);
-        this.employeesService.updateEmployee(task.employee.id, task.employee);
-      }
-    }
     this.tasksService.deleteTask(id);
   }
 
