@@ -3,17 +3,9 @@
     <div class="row">
       <div class="col-12">
         <div class="card rounded-0 shadow-lg border-0">
-          <div class="card-header bg-dark border-0 text-white rounded-0">Register form</div>
+          <div class="card-header bg-dark border-0 text-white rounded-0">Login form</div>
           <div class="card-body">
-            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-              <div class="row">
-                <div class="col-12">
-                  <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" formControlName="username" class="form-control rounded-0 border">
-                  </div>
-                </div>
-              </div>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
@@ -32,15 +24,12 @@
               </div>
               <div class="row">
                 <div class="col-12">
-                  <div class="form-group">
-                    <label for="phone">Phone number:</label>
-                    <input type="tel" id="phone" formControlName="phone" class="form-control rounded-0 border">
-                  </div>
+                  <button class="btn btn-primary rounded-0 mt-1" type="submit">Login</button>
                 </div>
               </div>
-              <div class="row">
+              <div class="row mt-1">
                 <div class="col-12">
-                  <button class="btn btn-primary rounded-0 mt-1">Register</button>
+                  <small class="text-muted">Need an account? <a [routerLink]="['/register']">Register</a></small>
                 </div>
               </div>
             </form>
@@ -50,4 +39,3 @@
     </div>
   </div>
 </div>
-
