@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class EmployeesAccessService {
-  private baseUrl = 'api/v1/employees';
+  private baseUrl = 'employees';
 
   constructor(private http: HttpClient) {}
 

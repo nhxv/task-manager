@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class TasksAccessService {
-  private baseUrl = 'api/v1/tasks';
+  private baseUrl = 'tasks';
 
   constructor(private http: HttpClient) {}
 
