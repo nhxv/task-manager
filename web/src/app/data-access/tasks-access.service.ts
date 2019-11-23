@@ -4,12 +4,16 @@ import {Observable} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class TasksAccessService {
-  private baseUrl = 'tasks';
+  private baseUrl = 'http://localhost:8080/tasks';
 
   constructor(private http: HttpClient) {}
 
   getTask(id: number): Observable<Object> {
     return this.http.get(`${this.baseUrl}/${id}`);
+  }
+
+  getTaskList(): Observable<any> {
+    return this.http.get(`${this.baseUrl}`);
   }
 
   createTask(task: Object): Observable<Object> {
@@ -22,9 +26,5 @@ export class TasksAccessService {
 
   deleteTask(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`, {responseType: 'text'});
-  }
-
-  getTaskList(): Observable<any> {
-    return this.http.get(`${this.baseUrl}`);
   }
 }

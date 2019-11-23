@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class EmployeesAccessService {
-  private baseUrl = 'employees';
+  private baseUrl = 'http://localhost:8080/employees';
 
   constructor(private http: HttpClient) {}
 
@@ -27,5 +27,4 @@ export class EmployeesAccessService {
   deleteEmployee(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`, {responseType: 'text'});
   }
-
 }

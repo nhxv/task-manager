@@ -2,7 +2,6 @@ package com.xv.mytodo.service;
 
 import com.xv.mytodo.model.Employee;
 import com.xv.mytodo.model.EmployeeDto;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
