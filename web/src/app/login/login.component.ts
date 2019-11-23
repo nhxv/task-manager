@@ -28,11 +28,9 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     // check user login
     if (this.authService.authenticate(this.loginForm.get('username').value, this.loginForm.get('password').value)) {
-      console.log(this.loginForm.get('username').value + ' is logged in');
       this.router.navigate(['tasks']);
       this.isInvalid = false;
     } else {
-      console.log('cannot login');
       this.isInvalid = true;
     }
   }

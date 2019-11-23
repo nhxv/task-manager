@@ -1,9 +1,10 @@
-package com.xv.mytodo.mytodo.repository;
+package com.xv.mytodo.repository;
 
-import com.xv.mytodo.mytodo.model.Employee;
+import com.xv.mytodo.model.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+    Employee findByUsername(String username);
 }

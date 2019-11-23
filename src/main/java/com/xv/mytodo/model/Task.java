@@ -1,4 +1,4 @@
-package com.xv.mytodo.mytodo.model;
+package com.xv.mytodo.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -22,7 +22,7 @@ public class Task {
 
     // when delete a task, don't cascade delete the employee
     @OneToOne
-    @JoinColumn(name = "employee_id") // foreign key
+    @JoinColumn(name = "employee_id", referencedColumnName = "id") // foreign key
     private Employee employee;
 
     public Task() {}
