@@ -18,7 +18,7 @@
                 <div class="col-12">
                   <div class="form-group">
                     <label for="password">Password:</label>
-                    <input type="password" id="password" formControlName="password" class="form-control rounded-0 border">
+                    <input type="password" id="password" formControlName="password" autocomplete="off" class="form-control rounded-0 border">
                   </div>
                 </div>
               </div>
@@ -27,7 +27,7 @@
                   <button class="btn btn-primary rounded-0 mt-1" type="submit">Login</button>
                 </div>
               </div>
-              <div class="row mt-1">
+              <div class="row mt-2">
                 <div class="col-12">
                   <small class="text-muted">Need an account? <a [routerLink]="['/register']">Register</a></small>
                 </div>

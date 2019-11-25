@@ -4,15 +4,6 @@ import {Injectable} from '@angular/core';
 export class AuthService {
   constructor() { }
 
-  authenticate(username, password) {
-    if (username === "voibay" && password === "password") {
-      sessionStorage.setItem('username', username);
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   isUserLoggedIn() {
     let user = sessionStorage.getItem('username');
     return !(user === null);
@@ -20,5 +11,6 @@ export class AuthService {
 
   logOut() {
     sessionStorage.removeItem('username');
+    localStorage.removeItem('token');
   }
 }

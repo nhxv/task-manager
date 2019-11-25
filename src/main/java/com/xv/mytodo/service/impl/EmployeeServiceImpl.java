@@ -4,6 +4,7 @@ import com.xv.mytodo.model.Employee;
 import com.xv.mytodo.model.EmployeeDto;
 import com.xv.mytodo.model.Role;
 import com.xv.mytodo.repository.EmployeeRepository;
+import com.xv.mytodo.repository.RoleRepository;
 import com.xv.mytodo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,6 +24,9 @@ public class EmployeeServiceImpl implements UserDetailsService, EmployeeService 
 
     @Autowired
     private EmployeeRepository employeeRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Autowired
     private BCryptPasswordEncoder bcryptEncoder;
@@ -69,10 +73,14 @@ public class EmployeeServiceImpl implements UserDetailsService, EmployeeService 
     @Override
     public Employee save(EmployeeDto employee) {
         Employee newEmployee = new Employee();
+        Role userRole = this.roleRepository.findById(Long.valueOf(2)).get();
+        Set<Role> roles = new HashSet<>();
+        roles.add(userRole);
         newEmployee.setUsername(employee.getUsername());
         newEmployee.setPassword(bcryptEncoder.encode(employee.getPassword()));
         newEmployee.setName(employee.getName());
         newEmployee.setEmail(employee.getEmail());
+        newEmployee.setRoles(roles);
         return employeeRepository.save(newEmployee);
     }
 }

@@ -17,7 +17,7 @@ export class EmployeesAccessService {
   }
 
   createEmployee(employee: Object): Observable<Object> {
-    return this.http.post(`${this.baseUrl}`, employee);
+    return this.http.post('http://localhost:8080/register', employee);
   }
 
   updateEmployee(id: number, value: any): Observable<Object> {
