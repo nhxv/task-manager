@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Employee} from '../employees/employee.model';
-import {EmployeesApiService} from '../api/employees-api.service';
+import {EmployeeApiService} from '../api/employee-api.service';
 import {Router} from '@angular/router';
+import {EmployeesService} from '../employees/employees.service';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,7 @@ import {Router} from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  constructor(private router: Router, private employeesAccessService: EmployeesApiService) { }
+  constructor(private router: Router, private employeesService: EmployeesService) { }
 
   ngOnInit() {
     this.initForm();
@@ -33,7 +34,7 @@ export class RegisterComponent implements OnInit {
       this.registerForm.get('name').value,
       this.registerForm.get('email').value
     );
-    this.employeesAccessService.createEmployee(newEmployee);
+    this.employeesService.createEmployee(newEmployee);
     this.router.navigate(['/login']);
   }
 }

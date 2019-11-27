@@ -2,7 +2,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Task} from '../task.model';
 import {Subscription} from 'rxjs';
 import {TasksService} from '../tasks.service';
-import {EmployeesService} from '../../employees/employees.service';
 
 @Component({
   selector: 'app-task-list',
@@ -13,7 +12,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
   taskList: Task[];
   taskListSub: Subscription;
 
-  constructor(private tasksService: TasksService, private employeesService: EmployeesService) {}
+  constructor(private tasksService: TasksService) {}
 
   ngOnInit(): void {
     // reload task list after add/delete task

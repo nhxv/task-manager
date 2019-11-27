@@ -4,7 +4,7 @@ import {Injectable} from '@angular/core';
 export class AuthService {
   constructor() { }
 
-  isUserAuthorize() {
+  isUser(): boolean {
     let user = sessionStorage.getItem('username');
     if (!user) {
       return false;
@@ -12,8 +12,20 @@ export class AuthService {
     return true;
   }
 
-  logOut() {
+  isAdmin() {
+    if (this.isUser()) {
+      if (sessionStorage.getItem('role') === 'ADMIN') {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    return false;
+  }
+
+  logOut(): void {
     sessionStorage.removeItem('username');
+    sessionStorage.removeItem('role');
     localStorage.removeItem('token');
   }
 }

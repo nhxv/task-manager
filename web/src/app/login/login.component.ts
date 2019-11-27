@@ -45,23 +45,15 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/tasks']);
             break;
           case 'USER':
-            this.router.navigate(['/employees']);
+            this.router.navigate(['/employee-profile']);
             break;
           default:
-            this.router.navigate(['/employees']);
+            this.router.navigate(['/employee-profile']);
         }
       } else {
         this.isInvalid = true;
         alert(data.message);
       }
     });
-
-    // check user login
-    // if (this.authService.authenticate(this.loginForm.get('username').value, this.loginForm.get('password').value)) {
-    //   this.router.navigate(['tasks']);
-    //   this.isInvalid = false;
-    // } else {
-    //   this.isInvalid = true;
-    // }
   }
 }
