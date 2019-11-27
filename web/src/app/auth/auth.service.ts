@@ -4,9 +4,12 @@ import {Injectable} from '@angular/core';
 export class AuthService {
   constructor() { }
 
-  isUserLoggedIn() {
+  isUserAuthorize() {
     let user = sessionStorage.getItem('username');
-    return !(user === null);
+    if (!user) {
+      return false;
+    }
+    return true;
   }
 
   logOut() {

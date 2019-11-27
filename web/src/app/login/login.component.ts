@@ -36,9 +36,9 @@ export class LoginComponent implements OnInit {
     };
     this.loginService.login(loginPayload).subscribe((data:any) => {
       if (data.status === 200) {
-        console.log(JSON.stringify(data));
         localStorage.setItem('token', data.result.token);
         sessionStorage.setItem('username', this.loginForm.get('username').value);
+        sessionStorage.setItem('role', data.result.roles[0].name);
         // check user role before navigate
         switch(data.result.roles[0].name) {
           case 'ADMIN':

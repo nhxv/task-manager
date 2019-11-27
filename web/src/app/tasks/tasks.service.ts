@@ -51,10 +51,6 @@ export class TasksService {
     }
   }
 
-  getTasks() {
-    return this.tasks.slice();
-  }
-
   deleteTask(id: number) {
     this.tasksAccessService.deleteTask(id).subscribe(() => {
       // get task based on id given, then find index of task in tasks array
