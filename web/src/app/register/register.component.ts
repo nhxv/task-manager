@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Employee} from '../employees/employee.model';
-import {EmployeesAccessService} from '../data-access/employees-access.service';
+import {EmployeesApiService} from '../api/employees-api.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  constructor(private router: Router, private employeesAccessService: EmployeesAccessService) { }
+  constructor(private router: Router, private employeesAccessService: EmployeesApiService) { }
 
   ngOnInit() {
     this.initForm();

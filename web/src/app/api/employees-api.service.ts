@@ -3,28 +3,28 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
-export class TasksAccessService {
-  private baseUrl = 'http://localhost:8080/tasks';
+export class EmployeesApiService {
+  private baseUrl = 'http://localhost:8080/employees';
 
   constructor(private http: HttpClient) {}
 
-  getTask(id: number): Observable<Object> {
+  getEmployee(id: number): Observable<Object> {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 
-  getTaskList(): Observable<any> {
+  getEmployeeList(): Observable<any> {
     return this.http.get(`${this.baseUrl}`);
   }
 
-  createTask(task: Object): Observable<Object> {
-    return this.http.post(`${this.baseUrl}`, task);
+  createEmployee(employee: Object): Observable<Object> {
+    return this.http.post('http://localhost:8080/register', employee);
   }
 
-  updateTask(id: number, value: any): Observable<Object> {
+  updateEmployee(id: number, value: any): Observable<Object> {
     return this.http.put(`${this.baseUrl}/${id}`, value);
   }
 
-  deleteTask(id: number): Observable<any> {
+  deleteEmployee(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`, {responseType: 'text'});
   }
 }

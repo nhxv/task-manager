@@ -16,9 +16,6 @@ export class TaskListComponent implements OnInit, OnDestroy {
   constructor(private tasksService: TasksService, private employeesService: EmployeesService) {}
 
   ngOnInit(): void {
-    // reload task list after navigate
-    // this.taskList = this.tasksService.getTasks().reverse();
-
     // reload task list after add/delete task
     this.taskListSub = this.tasksService.tasksChanged.subscribe((tasks: Task[]) => {
       this.taskList = tasks;

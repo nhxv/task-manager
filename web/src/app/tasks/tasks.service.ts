@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Task} from './task.model';
-import {TasksAccessService} from '../data-access/tasks-access.service';
+import {TasksApiService} from '../api/tasks-api.service';
 import {BehaviorSubject, Subject} from 'rxjs';
 import {EmployeesService} from '../employees/employees.service';
 
@@ -10,7 +10,7 @@ export class TasksService {
   tasksChanged = new BehaviorSubject<Task[]>(this.tasks.slice());
   taskEdit = new Subject<number>();
 
-  constructor(private tasksAccessService: TasksAccessService, private employeesService: EmployeesService) {
+  constructor(private tasksAccessService: TasksApiService, private employeesService: EmployeesService) {
     tasksAccessService.getTaskList().subscribe((tasksData: Task[]) => {
       this.tasks = tasksData;
       this.tasksChanged.next(this.tasks.slice());
