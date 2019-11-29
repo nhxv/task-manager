@@ -12,6 +12,10 @@ export class EmployeeApiService {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 
+  getEmployeeByUsername(username: string): Observable<Object> {
+    return this.http.get(`${this.baseUrl}/${username}`);
+  }
+
   getEmployeeList(): Observable<any> {
     return this.http.get(`${this.baseUrl}`);
   }

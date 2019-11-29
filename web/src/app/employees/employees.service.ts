@@ -9,27 +9,27 @@ export class EmployeesService {
   employees: Employee[] = [];
   employeesChanged = new BehaviorSubject<Employee[]>(this.employees.slice());
 
-  constructor(private employeeApiService: EmployeeApiService, private authService: AuthService) {
-    // if admin, load employee list
-    if (this.authService.isAdmin()) {
-      this.employeeApiService.getEmployeeList().subscribe((employeeData: Employee[]) => {
-        this.employees = employeeData;
-        this.employeesChanged.next(this.employees.slice());
-      });
-    }
+  constructor(private employeeApiService: EmployeeApiService, private authService: AuthService) {}
 
+  getEmployeeList() {
+    this.employeeApiService.getEmployeeList().subscribe((employeeData: Employee[]) => {
+      this.employees = employeeData;
+      this.employeesChanged.next(this.employees.slice());
+    });
+  }
+
+  getEmployeeByUsername(username: string) {
+    this.employeeApiService.getEmployeeByUsername(username);
   }
 
   createEmployee(employee: Employee) {
     this.employeeApiService.createEmployee(employee).subscribe(data => {
       console.log(data);
     });
-    if (this.authService.isAdmin()) {
-      this.employeeApiService.getEmployeeList().subscribe((employeeData: Employee[]) => {
-        this.employees = employeeData;
-        this.employeesChanged.next(this.employees.slice());
-      });
-    }
+    this.employeeApiService.getEmployeeList().subscribe((employeeData: Employee[]) => {
+      this.employees = employeeData;
+      this.employeesChanged.next(this.employees.slice());
+    });
   }
 
   updateEmployee(id: number, employeeUpdate: Employee) {

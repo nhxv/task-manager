@@ -40,6 +40,12 @@ public class EmployeeController {
         return ResponseEntity.ok().body(employee);
     }
 
+    @GetMapping("/employees/{username}")
+    public ResponseEntity<Employee> getEmployeeByUsername(@PathVariable(value="username") String username) {
+        Employee employee = employeeRepository.findByUsername(username);
+        return ResponseEntity.ok().body(employee);
+    }
+
     @PostMapping("/register")
     public Employee createEmployee(@Valid @RequestBody EmployeeDto employee) {
         return employeeService.save(employee);

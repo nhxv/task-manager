@@ -10,16 +10,18 @@ export class TasksService {
   tasksChanged = new BehaviorSubject<Task[]>(this.tasks.slice());
   taskEdit = new Subject<number>();
 
-  constructor(private tasksAccessService: TaskApiService, private employeesService: EmployeesService) {
-    tasksAccessService.getTaskList().subscribe((tasksData: Task[]) => {
+  constructor(private taskApiService: TaskApiService, private employeesService: EmployeesService) {}
+
+  getTaskList() {
+    this.taskApiService.getTaskList().subscribe((tasksData: Task[]) => {
       this.tasks = tasksData;
       this.tasksChanged.next(this.tasks.slice());
     });
   }
 
   createTask(task: Task) {
-    this.tasksAccessService.createTask(task).subscribe(() => {
-      this.tasksAccessService.getTaskList().subscribe((tasksData: Task[]) => {
+    this.taskApiService.createTask(task).subscribe(() => {
+      this.taskApiService.getTaskList().subscribe((tasksData: Task[]) => {
         // subscribe to get tasks data (specifically the primary key of each task) from the database
         this.tasks = tasksData;
         // emit the updated tasks
@@ -31,9 +33,9 @@ export class TasksService {
   }
 
   updateTask(id: number, task: Task) {
-    this.tasksAccessService.updateTask(id, task).subscribe(() => {
+    this.taskApiService.updateTask(id, task).subscribe(() => {
       //get new task list, after task is updated from db
-      this.tasksAccessService.getTaskList().subscribe((tasksData: Task[]) => {
+      this.taskApiService.getTaskList().subscribe((tasksData: Task[]) => {
         this.tasks = tasksData;
         this.tasksChanged.next(this.tasks.slice());
       });
@@ -52,7 +54,7 @@ export class TasksService {
   }
 
   deleteTask(id: number) {
-    this.tasksAccessService.deleteTask(id).subscribe(() => {
+    this.taskApiService.deleteTask(id).subscribe(() => {
       // get task based on id given, then find index of task in tasks array
       const deletedIndex = this.tasks.indexOf(this.getTask(id));
       // delete from tasks array, after knowing task was deleted from database
