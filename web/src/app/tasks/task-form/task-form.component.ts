@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Task} from '../task.model';
-import {TasksService} from '../tasks.service';
-import {EmployeesService} from '../../employees/employees.service';
+import {TaskService} from '../task.service';
+import {EmployeeService} from '../../employees/employee.service';
 import {Employee} from '../../employees/employee.model';
 
 @Component({
@@ -17,10 +17,10 @@ export class TaskFormComponent implements OnInit {
   employeeList: Employee[];
   employeeSelected: Employee = null;
 
-  constructor(private tasksService: TasksService, private employeesService: EmployeesService) { }
+  constructor(private taskService: TaskService, private employeeService: EmployeeService) { }
 
   ngOnInit() {
-    this.employeesService.employeesChanged.subscribe((employees: Employee[]) => {
+    this.employeeService.employeesChanged.subscribe((employees: Employee[]) => {
       this.employeeList = employees;
       this.initForm();
     });
@@ -35,11 +35,11 @@ export class TaskFormComponent implements OnInit {
       employee: new FormControl(this.employeeList[0])
     });
 
-    this.tasksService.taskEdit.subscribe((id: number) => {
+    this.taskService.taskEdit.subscribe((id: number) => {
       // set edit mode to true when there is id being passed in
       this.editMode = true;
       // get the task that needed to be edited from tasks service
-      this.editedTask = this.tasksService.getTask(id);
+      this.editedTask = this.taskService.getTask(id);
       // find employee index in dropdown list
       let index = 0;
       for (let employee of this.employeeList) {
@@ -77,9 +77,9 @@ export class TaskFormComponent implements OnInit {
     //if edit mode, update task; create task otherwise
     if (this.editMode) {
       // use editedTask.id and new edited taskInput
-      this.tasksService.updateTask(this.editedTask.id, taskInput);
+      this.taskService.updateTask(this.editedTask.id, taskInput);
     } else {
-      this.tasksService.createTask(taskInput);
+      this.taskService.createTask(taskInput);
     }
     // reset the form
     this.editMode = false;

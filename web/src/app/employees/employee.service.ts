@@ -2,24 +2,19 @@ import {Injectable} from '@angular/core';
 import {Employee} from './employee.model';
 import {EmployeeApiService} from '../api/employee-api.service';
 import {BehaviorSubject} from 'rxjs';
-import {AuthService} from '../auth/auth.service';
 
 @Injectable({providedIn: 'root'})
-export class EmployeesService {
+export class EmployeeService {
   employees: Employee[] = [];
   employeesChanged = new BehaviorSubject<Employee[]>(this.employees.slice());
 
-  constructor(private employeeApiService: EmployeeApiService, private authService: AuthService) {}
+  constructor(private employeeApiService: EmployeeApiService) {}
 
   getEmployeeList() {
     this.employeeApiService.getEmployeeList().subscribe((employeeData: Employee[]) => {
       this.employees = employeeData;
       this.employeesChanged.next(this.employees.slice());
     });
-  }
-
-  getEmployeeByUsername(username: string) {
-    this.employeeApiService.getEmployeeByUsername(username);
   }
 
   createEmployee(employee: Employee) {

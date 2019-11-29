@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {EmployeesService} from '../employees.service';
+import {EmployeeService} from '../employee.service';
 import {Employee} from '../employee.model';
 import {Subscription} from 'rxjs';
 
@@ -12,10 +12,10 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   employeeList: Employee[] = [];
   employeeListSub: Subscription;
 
-  constructor(private employeesService: EmployeesService) { }
+  constructor(private employeeService: EmployeeService) { }
 
   ngOnInit() {
-    this.employeeListSub = this.employeesService.employeesChanged.subscribe((employeeData: Employee[]) => {
+    this.employeeListSub = this.employeeService.employeesChanged.subscribe((employeeData: Employee[]) => {
       this.employeeList = employeeData;
     });
   }

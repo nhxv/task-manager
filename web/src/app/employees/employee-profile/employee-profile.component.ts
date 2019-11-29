@@ -8,7 +8,7 @@ import {Employee} from '../employee.model';
 })
 export class EmployeeProfileComponent implements OnInit {
   employee: Employee;
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
   }
