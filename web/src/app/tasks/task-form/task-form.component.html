@@ -1,6 +1,6 @@
 <div class="row mb-4">
   <div class="col-12">
-    <div class="card border-0 rounded-0 shadow-lg">
+    <div class="card border-0 rounded-0 shadow">
       <div class="card-header bg-dark text-white border-0 rounded-0">Task form</div>
       <div class="card-body">
         <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
@@ -8,7 +8,7 @@
             <div class="col-12">
               <div class="form-group">
                 <label for="task-name">Name:</label>
-                <input type="text" id="task-name" class="form-control border rounded-0" formControlName="name">
+                <input type="text" id="task-name" class="form-control rounded-0" formControlName="name">
                 <span class="text-danger" *ngIf="!taskForm.get('name').valid && taskForm.get('name').touched">Invalid name</span>
               </div>
             </div>
@@ -17,7 +17,7 @@
             <div class="col-12">
               <div class="form-group">
                 <label for="task-description">Description:</label>
-                <textarea id="task-description" class="form-control border rounded-0" rows="4" formControlName="description"></textarea>
+                <textarea id="task-description" class="form-control rounded-0" rows="4" formControlName="description"></textarea>
                 <span class="text-danger" *ngIf="!taskForm.get('description').valid && taskForm.get('description').touched">Invalid description</span>
               </div>
             </div>
@@ -27,7 +27,7 @@
               <label>Employee:</label>
               <br>
               <div class="d-inline-block">
-                <select class="btn border rounded-0" (ngModelChange)="onAssignEmployee($event)" formControlName="employee">
+                <select class="btn rounded-0 form-control" style="border: 1px solid #ced4da;" (ngModelChange)="onAssignEmployee($event)" formControlName="employee">
                   <option *ngFor="let employee of employeeList" [ngValue]="employee">{{employee.name}}</option>
                 </select>
               </div>

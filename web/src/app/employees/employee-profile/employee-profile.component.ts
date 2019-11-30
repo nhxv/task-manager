@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Employee} from '../employee.model';
+import {EmployeeService} from '../employee.service';
 
 @Component({
   selector: 'app-employee-profile',
@@ -8,9 +9,13 @@ import {Employee} from '../employee.model';
 })
 export class EmployeeProfileComponent implements OnInit {
   employee: Employee;
-  constructor() {}
+  constructor(private employeeService: EmployeeService) {}
 
   ngOnInit() {
+    this.employeeService.getEmployee(sessionStorage.getItem('username'));
+    this.employeeService.employeeChanged.subscribe((employeeData: Employee) => {
+      this.employee = employeeData;
+    });
   }
 
 }

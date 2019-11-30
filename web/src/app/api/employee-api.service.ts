@@ -13,7 +13,7 @@ export class EmployeeApiService {
   }
 
   getEmployeeByUsername(username: string): Observable<Object> {
-    return this.http.get(`${this.baseUrl}/${username}`);
+    return this.http.get(`${this.baseUrl}/username/${username}`);
   }
 
   getEmployeeList(): Observable<any> {

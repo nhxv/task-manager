@@ -40,8 +40,9 @@ public class EmployeeController {
         return ResponseEntity.ok().body(employee);
     }
 
-    @GetMapping("/employees/{username}")
-    public ResponseEntity<Employee> getEmployeeByUsername(@PathVariable(value="username") String username) {
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @GetMapping("/employees/username/{username}")
+    public ResponseEntity<Employee> getEmployeeByUsername(@PathVariable(value = "username") String username) {
         Employee employee = employeeRepository.findByUsername(username);
         return ResponseEntity.ok().body(employee);
     }

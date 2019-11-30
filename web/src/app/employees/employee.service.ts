@@ -7,6 +7,8 @@ import {BehaviorSubject} from 'rxjs';
 export class EmployeeService {
   employees: Employee[] = [];
   employeesChanged = new BehaviorSubject<Employee[]>(this.employees.slice());
+  employee: Employee = null;
+  employeeChanged = new BehaviorSubject<Employee>({...this.employee});
 
   constructor(private employeeApiService: EmployeeApiService) {}
 
@@ -14,6 +16,13 @@ export class EmployeeService {
     this.employeeApiService.getEmployeeList().subscribe((employeeData: Employee[]) => {
       this.employees = employeeData;
       this.employeesChanged.next(this.employees.slice());
+    });
+  }
+
+  getEmployee(username: string) {
+    this.employeeApiService.getEmployeeByUsername(username).subscribe((employeeData: Employee) => {
+      this.employee = employeeData;
+      this.employeeChanged.next({...this.employee});
     });
   }
 
