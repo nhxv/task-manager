@@ -12,7 +12,7 @@ export class AuthService {
     return true;
   }
 
-  isAdmin() {
+  isAdmin(): boolean {
     if (this.isUser()) {
       if (sessionStorage.getItem('role') === 'ADMIN') {
         return true;

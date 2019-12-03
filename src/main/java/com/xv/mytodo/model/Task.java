@@ -20,6 +20,9 @@ public class Task {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "status")
+    private String status;
+
     // when delete a task, don't cascade delete the employee
     @OneToOne
     @JoinColumn(name = "employee_id", referencedColumnName = "id") // foreign key
@@ -56,6 +59,14 @@ public class Task {
         this.description = description;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public Employee getEmployee() {
         return employee;
     }
@@ -70,6 +81,7 @@ public class Task {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", status='" + status + '\'' +
                 ", employee=" + employee +
                 '}';
     }

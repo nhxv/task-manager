@@ -49,6 +49,8 @@ public class TaskController {
         Task task = taskRepository.findById(taskId).orElseThrow(() -> new ResourceNotFoundException("Task not found for this id: " + taskId));
         task.setName(taskUpdate.getName());
         task.setDescription(taskUpdate.getDescription());
+        System.out.println(taskUpdate);
+        task.setStatus(taskUpdate.getStatus());
         task.setEmployee(taskUpdate.getEmployee());
         return ResponseEntity.ok(taskRepository.save(task));
     }

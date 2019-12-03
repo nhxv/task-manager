@@ -7,6 +7,9 @@
     <p>{{task.description}}</p>
     <p class="h6">Employee:</p>
     <p>{{task.employee.name}}</p>
-    <button class="btn btn-dark rounded-0" type="button" (click)="onEditTask(task.id)">Edit task</button>
+    <p class="h6">Status:</p>
+    <p>{{task.status}}</p>
+    <button class="btn btn-dark rounded-0 mr-2" type="button" (click)="onEditTask(task.id)">Edit task</button>
+    <button class="btn btn-warning rounded-0" type="button" (click)="onArchiveTask(task)" *ngIf="task.status === 'DONE'">Archive task</button>
   </div>
 </div>

@@ -30,6 +30,10 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this.taskService.taskEdit.next(id);
   }
 
+  onArchiveTask(task: Task) {
+    // confirm task done
+  }
+
   ngOnDestroy(): void {
     this.taskListSub.unsubscribe();
   }

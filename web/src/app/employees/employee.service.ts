@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Employee} from './employee.model';
 import {EmployeeApiService} from '../api/employee-api.service';
 import {BehaviorSubject} from 'rxjs';
+import {AuthService} from '../auth/auth.service';
 
 @Injectable({providedIn: 'root'})
 export class EmployeeService {
@@ -10,7 +11,7 @@ export class EmployeeService {
   employee: Employee = null;
   employeeChanged = new BehaviorSubject<Employee>({...this.employee});
 
-  constructor(private employeeApiService: EmployeeApiService) {}
+  constructor(private employeeApiService: EmployeeApiService, private authService: AuthService) {}
 
   getEmployeeList() {
     this.employeeApiService.getEmployeeList().subscribe((employeeData: Employee[]) => {
@@ -38,26 +39,33 @@ export class EmployeeService {
 
   updateEmployee(id: number, employeeUpdate: Employee) {
     this.employeeApiService.updateEmployee(id, employeeUpdate).subscribe(() => {
-      this.employeeApiService.getEmployeeList().subscribe((employeeData: Employee[]) => {
-        this.employees = employeeData;
-        this.employeesChanged.next(this.employees.slice());
-      });
+      // check role
+      if (this.authService.isAdmin()) {
+        this.employeeApiService.getEmployeeList().subscribe((employeeData: Employee[]) => {
+          this.employees = employeeData;
+          this.employeesChanged.next(this.employees.slice());
+        });
+      }
     });
   }
 
   changeEmployeeTask() {
-    this.employeeApiService.getEmployeeList().subscribe((employeeData: Employee[]) => {
-      this.employees = employeeData;
-      this.employeesChanged.next(this.employees.slice());
-    });
-  }
-
-  deleteEmployee(id: number) {
-    this.employeeApiService.deleteEmployee(id).subscribe(() => {
+    if (this.authService.isAdmin()) {
       this.employeeApiService.getEmployeeList().subscribe((employeeData: Employee[]) => {
         this.employees = employeeData;
         this.employeesChanged.next(this.employees.slice());
       });
+    }
+  }
+
+  deleteEmployee(id: number) {
+    this.employeeApiService.deleteEmployee(id).subscribe(() => {
+      if (this.authService.isAdmin()) {
+        this.employeeApiService.getEmployeeList().subscribe((employeeData: Employee[]) => {
+          this.employees = employeeData;
+          this.employeesChanged.next(this.employees.slice());
+        });
+      }
     });
   }
 }

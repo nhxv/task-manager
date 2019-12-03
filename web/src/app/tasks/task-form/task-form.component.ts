@@ -71,10 +71,13 @@ export class TaskFormComponent implements OnInit {
     // to avoid violate db relationship
     this.employeeSelected.task = null;
 
-    // create task object for submission
-    const taskInput = new Task(this.taskForm.get('name').value, this.taskForm.get('description').value, this.employeeSelected);
+    //set task status to ASSIGN
+    const status = 'ASSIGN';
 
-    //if edit mode, update task; create task otherwise
+    // create task object for submission
+    const taskInput = new Task(this.taskForm.get('name').value, this.taskForm.get('description').value, this.employeeSelected, status);
+
+    // if edit mode, update task; create task otherwise
     if (this.editMode) {
       // use editedTask.id and new edited taskInput
       this.taskService.updateTask(this.editedTask.id, taskInput);

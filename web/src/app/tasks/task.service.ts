@@ -3,6 +3,7 @@ import {Task} from './task.model';
 import {TaskApiService} from '../api/task-api.service';
 import {BehaviorSubject, Subject} from 'rxjs';
 import {EmployeeService} from '../employees/employee.service';
+import {AuthService} from '../auth/auth.service';
 
 @Injectable({providedIn: 'root'})
 export class TaskService {
@@ -10,7 +11,7 @@ export class TaskService {
   tasksChanged = new BehaviorSubject<Task[]>(this.tasks.slice());
   taskEdit = new Subject<number>();
 
-  constructor(private taskApiService: TaskApiService, private employeeService: EmployeeService) {}
+  constructor(private taskApiService: TaskApiService, private employeeService: EmployeeService, private authService: AuthService) {}
 
   getTaskList() {
     this.taskApiService.getTaskList().subscribe((tasksData: Task[]) => {
@@ -35,11 +36,12 @@ export class TaskService {
   updateTask(id: number, task: Task) {
     this.taskApiService.updateTask(id, task).subscribe(() => {
       //get new task list, after task is updated from db
-      this.taskApiService.getTaskList().subscribe((tasksData: Task[]) => {
-        this.tasks = tasksData;
-        this.tasksChanged.next(this.tasks.slice());
-      });
-
+      if (this.authService.isAdmin()) {
+        this.taskApiService.getTaskList().subscribe((tasksData: Task[]) => {
+          this.tasks = tasksData;
+          this.tasksChanged.next(this.tasks.slice());
+        });
+      }
       //let employees service knows that tasks is updated
       this.employeeService.changeEmployeeTask();
     });
