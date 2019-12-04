@@ -7,6 +7,7 @@ const appRoutes: Routes = [
   {path: 'tasks', loadChildren: () => import('./tasks/tasks.module').then(m => m.TasksModule)},
   {path: 'employees', loadChildren: () => import('./employees/employee-list/employee-list.module').then(m => m.EmployeeListModule)},
   {path: 'profile', loadChildren: () => import('./employees/employee-profile/employee-profile.module').then(m => m.EmployeeProfileModule)},
+  {path: 'archives', loadChildren: () => import('./archives/archives.module').then(m => m.ArchivesModule)},
   {path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule)},
   {path: 'register', loadChildren: () => import('./register/register.module').then(m => m.RegisterModule)},
   // { path: 'not-found', component: PageNotFoundComponent },
