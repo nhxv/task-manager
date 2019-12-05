@@ -32,6 +32,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   onArchiveTask(task: Task) {
     // confirm task done
+
   }
 
   ngOnDestroy(): void {

@@ -1,15 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Archive} from './archive.model';
+import {Subscription} from 'rxjs';
+import {ArchiveService} from './archive.service';
 
 @Component({
   selector: 'app-archives',
   templateUrl: './archives.component.html',
   styleUrls: ['./archives.component.css']
 })
-export class ArchivesComponent implements OnInit {
+export class ArchivesComponent implements OnInit, OnDestroy {
+  archiveList: Archive[];
+  archiveListSub: Subscription;
 
-  constructor() { }
+  constructor(private archiveService: ArchiveService) { }
 
   ngOnInit() {
+    this.archiveListSub = this.archiveService.archivesChanged.subscribe((archiveData: Archive[]) => {
+      this.archiveList = archiveData;
+    })
   }
+
+  ngOnDestroy(): void {
+    this.archiveListSub.unsubscribe();
+  }
+
 
 }

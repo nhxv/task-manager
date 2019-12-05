@@ -34,15 +34,15 @@ public class EmployeeController {
     }
 
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    @GetMapping("/employees/{id}")
-    public ResponseEntity<Employee> getEmployee(@PathVariable(value = "id") Long employeeId) throws ResourceNotFoundException {
+    @GetMapping("/employees/{employeeId}")
+    public ResponseEntity<Employee> getEmployee(@PathVariable long employeeId) throws ResourceNotFoundException {
         Employee employee = employeeRepository.findById(employeeId).orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id: " + employeeId));
         return ResponseEntity.ok().body(employee);
     }
 
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    @GetMapping("/employees/username/{username}")
-    public ResponseEntity<Employee> getEmployeeByUsername(@PathVariable(value = "username") String username) {
+    @GetMapping("/employees/profile/{username}")
+    public ResponseEntity<Employee> getEmployeeByUsername(@PathVariable String username) {
         Employee employee = employeeRepository.findByUsername(username);
         return ResponseEntity.ok().body(employee);
     }
@@ -53,8 +53,8 @@ public class EmployeeController {
     }
 
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    @PutMapping("/employees/{id}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable(value = "id") Long employeeId, @Valid @RequestBody Employee employeeUpdate) throws ResourceNotFoundException {
+    @PutMapping("/employees/{employeeId}")
+    public ResponseEntity<Employee> updateEmployee(@PathVariable long employeeId, @Valid @RequestBody Employee employeeUpdate) throws ResourceNotFoundException {
         Employee employee = employeeRepository.findById(employeeId).orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id: " + employeeId));
         employee.setName(employeeUpdate.getName());
         employee.setEmail(employeeUpdate.getEmail());
@@ -63,8 +63,8 @@ public class EmployeeController {
     }
 
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    @DeleteMapping("/employees/{id}")
-    public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") Long employeeId) throws ResourceNotFoundException {
+    @DeleteMapping("/employees/{employeeId}")
+    public Map<String, Boolean> deleteEmployee(@PathVariable long employeeId) throws ResourceNotFoundException {
         Employee employee = employeeRepository.findById(employeeId).orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id: " + employeeId));
         employeeRepository.delete(employee);
         Map<String, Boolean> response = new HashMap<>();
