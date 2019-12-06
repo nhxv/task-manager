@@ -15,9 +15,15 @@ export class ArchivesComponent implements OnInit, OnDestroy {
   constructor(private archiveService: ArchiveService) { }
 
   ngOnInit() {
+    // when refresh page, load archive list
+    this.archiveService.getArchiveList();
     this.archiveListSub = this.archiveService.archivesChanged.subscribe((archiveData: Archive[]) => {
       this.archiveList = archiveData;
     })
+  }
+
+  onDeleteArchive(id: number) {
+    this.archiveService.deleteArchive(id);
   }
 
   ngOnDestroy(): void {

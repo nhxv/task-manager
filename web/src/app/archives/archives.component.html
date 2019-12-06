@@ -1,1 +1,16 @@
-<p>archives works!</p>
+<div class="row">
+  <div class="col-md-4" *ngFor="let archive of archiveList">
+    <div class="card rounded-0 shadow border-0 mb-4">
+      <div class="card-body">
+        <button type="button" class="close text-danger" aria-label="Close" style="outline: none;" (click)="onDeleteArchive(archive.id)"><span aria-hidden="true">&times;</span></button>
+        <p class="h5">{{archive.name}}</p>
+        <hr>
+        <p class="h6">Description:</p>
+        <p>{{archive.description}}</p>
+        <p class="h6">Employee:</p>
+        <p>{{archive.employeeName}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+

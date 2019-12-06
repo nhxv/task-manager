@@ -2,6 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Task} from '../task.model';
 import {Subscription} from 'rxjs';
 import {TaskService} from '../task.service';
+import {ArchiveService} from '../../archives/archive.service';
+import {Archive} from '../../archives/archive.model';
 
 @Component({
   selector: 'app-task-list',
@@ -12,9 +14,10 @@ export class TaskListComponent implements OnInit, OnDestroy {
   taskList: Task[];
   taskListSub: Subscription;
 
-  constructor(private taskService: TaskService) {}
+  constructor(private taskService: TaskService, private archiveService: ArchiveService) {}
 
   ngOnInit(): void {
+    this.taskService.getTaskList();
     // reload task list after add/delete task
     this.taskListSub = this.taskService.tasksChanged.subscribe((tasks: Task[]) => {
       this.taskList = tasks;
@@ -31,8 +34,10 @@ export class TaskListComponent implements OnInit, OnDestroy {
   }
 
   onArchiveTask(task: Task) {
-    // confirm task done
-
+    // confirm task done, move to archive
+    const archive: Archive = new Archive(task.name, task.description, task.employee.name);
+    this.archiveService.createArchive(archive);
+    this.onDeleteTask(task.id);
   }
 
   ngOnDestroy(): void {

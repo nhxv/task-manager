@@ -20,6 +20,7 @@ export class TaskFormComponent implements OnInit {
   constructor(private taskService: TaskService, private employeeService: EmployeeService) { }
 
   ngOnInit() {
+    this.employeeService.getEmployeeList();
     this.employeeService.employeesChanged.subscribe((employees: Employee[]) => {
       this.employeeList = employees;
       this.initForm();

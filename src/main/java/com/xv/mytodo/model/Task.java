@@ -23,7 +23,6 @@ public class Task {
     @Column(name = "status")
     private String status;
 
-    // when delete a task, don't cascade delete the employee
     @OneToOne
     @JoinColumn(name = "employee_id", referencedColumnName = "id") // foreign key
     private Employee employee;

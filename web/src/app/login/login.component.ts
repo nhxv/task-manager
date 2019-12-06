@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {LoginService} from './login.service';
 import {EmployeeService} from '../employees/employee.service';
 import {TaskService} from '../tasks/task.service';
+import {ArchiveService} from '../archives/archive.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isInvalid: boolean = false;
 
-  constructor(private router: Router, private loginService: LoginService, private employeeService: EmployeeService, private taskService: TaskService) { }
+  constructor(private router: Router, private loginService: LoginService, private employeeService: EmployeeService, private taskService: TaskService, private archiveService: ArchiveService) { }
 
   ngOnInit() {
     this.initForm();
@@ -44,8 +45,10 @@ export class LoginComponent implements OnInit {
         // check user role then navigate
         switch(data.result.roles[0].name) {
           case 'ADMIN':
+            // load employees, tasks, archives
             this.employeeService.getEmployeeList();
             this.taskService.getTaskList();
+            this.archiveService.getArchiveList();
             this.router.navigate(['/tasks']);
             break;
           case 'USER':
