@@ -31,9 +31,9 @@ public class Employee {
 
     // set employee role
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "EMPLOYEE_ROLES", joinColumns = {
-            @JoinColumn(name = "EMPLOYEE_ID") }, inverseJoinColumns = {
-            @JoinColumn(name = "ROLE_ID") })
+    @JoinTable(name = "EMPLOYEE_ROLES",
+            joinColumns = {@JoinColumn(name = "EMPLOYEE_ID") },
+            inverseJoinColumns = {@JoinColumn(name = "ROLE_ID") })
     private Set<Role> roles;
 
     public long getId() {

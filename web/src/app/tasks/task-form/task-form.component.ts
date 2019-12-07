@@ -4,6 +4,7 @@ import {Task} from '../task.model';
 import {TaskService} from '../task.service';
 import {EmployeeService} from '../../employees/employee.service';
 import {Employee} from '../../employees/employee.model';
+import {first, single, take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-task-form',
@@ -22,12 +23,24 @@ export class TaskFormComponent implements OnInit {
   ngOnInit() {
     this.employeeService.getEmployeeList();
     this.employeeService.employeesChanged.subscribe((employees: Employee[]) => {
-      this.employeeList = employees;
+      this.employeeList = this.filterEmployee(employees);
       this.initForm();
     });
   }
 
+  filterEmployee(employees: Employee[]): Employee[] {
+    //return a list of employee without task
+    const filteredEmployees: Employee[] = [];
+    for (let employee of employees) {
+      if (!employee.task) {
+        filteredEmployees.push(employee);
+      }
+    }
+    return filteredEmployees;
+  }
+
   private initForm() {
+    // default add form
     let name = '';
     let description = '';
     this.taskForm = new FormGroup({
@@ -36,25 +49,19 @@ export class TaskFormComponent implements OnInit {
       employee: new FormControl(this.employeeList[0])
     });
 
+    // edit form
     this.taskService.taskEdit.subscribe((id: number) => {
       // set edit mode to true when there is id being passed in
       this.editMode = true;
-      // get the task that needed to be edited from tasks service
+      // get the task that needed to be edited from task service
       this.editedTask = this.taskService.getTask(id);
-      // find employee index in dropdown list
-      let index = 0;
-      for (let employee of this.employeeList) {
-        if (employee.id === this.editedTask.employee.id) {
-          index = this.employeeList.indexOf(employee);
-        }
-      }
-      // set value of employee selected, to employee of edited task
+
       this.employeeSelected = this.editedTask.employee;
       // set value of edited task to form
       this.taskForm.setValue({
         name: this.editedTask.name,
         description: this.editedTask.description,
-        employee: this.employeeList[index]
+        employee: this.employeeList[0]
       })
     });
   }

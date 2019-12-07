@@ -13,6 +13,7 @@ import {Archive} from '../../archives/archive.model';
 export class TaskListComponent implements OnInit, OnDestroy {
   taskList: Task[];
   taskListSub: Subscription;
+  isEdit: boolean = false;
 
   constructor(private taskService: TaskService, private archiveService: ArchiveService) {}
 
@@ -31,6 +32,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
   onEditTask(id: number) {
     // pass the id to task-form
     this.taskService.taskEdit.next(id);
+    this.isEdit = true;
   }
 
   onArchiveTask(task: Task) {
