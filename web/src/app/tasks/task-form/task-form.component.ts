@@ -16,6 +16,7 @@ export class TaskFormComponent implements OnInit {
   editMode: boolean = false;
   editedTask: Task;
   employeeList: Employee[];
+  employeeListInEdit: Employee[];
   employeeSelected: Employee = null;
 
   constructor(private taskService: TaskService, private employeeService: EmployeeService) { }
@@ -23,20 +24,9 @@ export class TaskFormComponent implements OnInit {
   ngOnInit() {
     this.employeeService.getEmployeeList();
     this.employeeService.employeesChanged.subscribe((employees: Employee[]) => {
-      this.employeeList = this.filterEmployee(employees);
+      this.employeeList = employees.filter(employee => !employee.task);
       this.initForm();
     });
-  }
-
-  filterEmployee(employees: Employee[]): Employee[] {
-    //return a list of employee without task
-    const filteredEmployees: Employee[] = [];
-    for (let employee of employees) {
-      if (!employee.task) {
-        filteredEmployees.push(employee);
-      }
-    }
-    return filteredEmployees;
   }
 
   private initForm() {
@@ -50,18 +40,25 @@ export class TaskFormComponent implements OnInit {
     });
 
     // edit form
-    this.taskService.taskEdit.subscribe((id: number) => {
+    this.taskService.taskEdit.pipe(first()).subscribe((id: number) => {
       // set edit mode to true when there is id being passed in
       this.editMode = true;
+
       // get the task that needed to be edited from task service
       this.editedTask = this.taskService.getTask(id);
 
+      // set up employeeList in edit mode
+      this.employeeListInEdit = this.employeeList.slice();
+      this.employeeListInEdit.unshift(this.editedTask.employee);
+
+      //auto select employee of the edited task
       this.employeeSelected = this.editedTask.employee;
+
       // set value of edited task to form
       this.taskForm.setValue({
         name: this.editedTask.name,
         description: this.editedTask.description,
-        employee: this.employeeList[0]
+        employee: this.employeeListInEdit[0]
       })
     });
   }
@@ -72,7 +69,7 @@ export class TaskFormComponent implements OnInit {
 
   onSubmit() {
     // auto select first employee if none is selected
-    if (!this.employeeSelected && this.employeeList[0]) {
+    if (!this.employeeSelected && this.employeeList[0] && !this.editMode) {
       this.employeeSelected = this.employeeList[0];
     }
 
