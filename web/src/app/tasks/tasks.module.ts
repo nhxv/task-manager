@@ -20,6 +20,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     TasksRoutingModule,
     NgbModule,
     CommonModule
-  ]
+  ],
+  exports: [TaskFormComponent],
+  bootstrap: [TaskFormComponent]
 })
 export class TasksModule {}

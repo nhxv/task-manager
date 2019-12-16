@@ -4,7 +4,7 @@ import {Task} from '../task.model';
 import {TaskService} from '../task.service';
 import {EmployeeService} from '../../employees/employee.service';
 import {Employee} from '../../employees/employee.model';
-import {first, single, take} from 'rxjs/operators';
+import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-task-form',
@@ -94,5 +94,12 @@ export class TaskFormComponent implements OnInit {
     this.taskForm.reset();
     this.taskForm.get('employee').setValue(this.employeeList[0]);
     this.employeeSelected = null;
+  }
+
+  isEmptyField(field: string): boolean {
+    if (!this.taskForm.get(field).valid && this.taskForm.get(field).touched) {
+      return true;
+    }
+    return false;
   }
 }

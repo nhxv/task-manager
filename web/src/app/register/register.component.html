@@ -11,6 +11,7 @@
                   <div class="form-group">
                     <label for="username">Username:</label>
                     <input type="text" id="username" formControlName="username" class="form-control rounded-0">
+                    <span class="text-danger" *ngIf="isEmptyField('username')">Invalid username</span>
                   </div>
                 </div>
               </div>
@@ -19,6 +20,7 @@
                   <div class="form-group">
                     <label for="password">Password:</label>
                     <input type="password" id="password" formControlName="password" autocomplete="off" class="form-control rounded-0">
+                    <span class="text-danger" *ngIf="isEmptyField('password')">Invalid password</span>
                   </div>
                 </div>
               </div>

@@ -39,6 +39,5 @@ public class AuthenticationController {
         final String token = jwtTokenUtil.generateToken(authentication);
         return new ApiResponse<>(200, "success", new AuthToken(token, employee.getRoles()));
     }
-
 }
 

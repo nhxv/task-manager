@@ -13,6 +13,7 @@ import {ArchiveService} from '../archives/archive.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  errorMessage = '';
   isInvalid: boolean = false;
 
   constructor(private router: Router, private loginService: LoginService, private employeeService: EmployeeService, private taskService: TaskService, private archiveService: ArchiveService) { }
@@ -38,29 +39,37 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.get('password').value
     };
     this.loginService.login(loginPayload).subscribe((data:any) => {
-      if (data.status === 200) {
-        localStorage.setItem('token', data.result.token);
-        sessionStorage.setItem('username', this.loginForm.get('username').value);
-        sessionStorage.setItem('role', data.result.roles[0].name);
-        // check user role then navigate
-        switch(data.result.roles[0].name) {
-          case 'ADMIN':
-            // load employees, tasks, archives
-            this.employeeService.getEmployeeList();
-            this.taskService.getTaskList();
-            this.archiveService.getArchiveList();
-            this.router.navigate(['/tasks']);
-            break;
-          case 'USER':
-            this.router.navigate(['/profile']);
-            break;
-          default:
-            this.router.navigate(['/profile']);
-        }
-      } else {
-        this.isInvalid = true;
-        alert(data.message);
+      // success login
+      localStorage.setItem('token', data.result.token);
+      sessionStorage.setItem('username', this.loginForm.get('username').value);
+      sessionStorage.setItem('role', data.result.roles[0].name);
+      // check user role then navigate
+      switch(data.result.roles[0].name) {
+        case 'ADMIN':
+          // load employees, tasks, archives
+          this.employeeService.getEmployeeList();
+          this.taskService.getTaskList();
+          this.archiveService.getArchiveList();
+          this.router.navigate(['/tasks']);
+          break;
+        case 'USER':
+          this.router.navigate(['/profile']);
+          break;
+        default:
+          this.router.navigate(['/profile']);
       }
+    }, errorMessage => {
+      this.errorMessage = errorMessage;
+      setInterval(() => {
+        this.errorMessage = '';
+      }, 2000);
     });
+  }
+
+  isEmptyField(field: string): boolean {
+    if (!this.loginForm.get(field).valid && this.loginForm.get(field).touched) {
+      return true;
+    }
+    return false;
   }
 }

@@ -36,4 +36,11 @@ export class RegisterComponent implements OnInit {
     this.employeeService.createEmployee(newEmployee);
     this.router.navigate(['/login']);
   }
+
+  isEmptyField(field: string): boolean {
+    if (!this.registerForm.get(field).valid && this.registerForm.get(field).touched) {
+      return true;
+    }
+    return false;
+  }
 }

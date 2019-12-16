@@ -33,7 +33,7 @@ public class EmployeeServiceImpl implements UserDetailsService, EmployeeService 
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Employee employee = employeeRepository.findByUsername(username);
-        if(employee == null){
+        if (employee == null) {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
         return new org.springframework.security.core.userdetails.User(employee.getUsername(), employee.getPassword(), getAuthority(employee));
