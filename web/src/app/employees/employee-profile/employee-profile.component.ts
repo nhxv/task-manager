@@ -3,6 +3,8 @@ import {Employee} from '../employee.model';
 import {EmployeeService} from '../employee.service';
 import {TaskService} from '../../tasks/task.service';
 import {Task} from 'src/app/tasks/task.model';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {EmployeeEditComponent} from '../employee-edit/employee-edit.component';
 
 @Component({
   selector: 'app-employee-profile',
@@ -14,7 +16,7 @@ export class EmployeeProfileComponent implements OnInit {
   isDoing: boolean;
   isDone: boolean;
 
-  constructor(private employeeService: EmployeeService, private taskService: TaskService) {}
+  constructor(private employeeService: EmployeeService, private taskService: TaskService, private modalService: NgbModal) {}
 
   ngOnInit() {
     //load employee logging in
@@ -26,6 +28,10 @@ export class EmployeeProfileComponent implements OnInit {
         this.isDone = this.employee.task.status === 'DONE';
       }
     });
+  }
+
+  onEdit() {
+    this.modalService.open(EmployeeEditComponent);
   }
 
   onAccept() {
