@@ -9,7 +9,7 @@ export class EmployeeService {
   employees: Employee[] = [];
   employeesChanged = new BehaviorSubject<Employee[]>(this.employees.slice());
   employee: Employee = null;
-  employeeChanged = new BehaviorSubject<Employee>({...this.employee});
+  employeeChanged = new BehaviorSubject({...this.employee});
 
   constructor(private employeeApiService: EmployeeApiService, private authService: AuthService) {}
 
@@ -25,6 +25,11 @@ export class EmployeeService {
       this.employee = employeeData;
       this.employeeChanged.next({...this.employee});
     });
+  }
+
+  setEmployee(employee: Employee) {
+    this.employee = employee;
+    this.employeeChanged.next({...this.employee});
   }
 
   createEmployee(employee: Employee) {

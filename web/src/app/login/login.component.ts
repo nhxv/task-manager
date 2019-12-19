@@ -41,15 +41,11 @@ export class LoginComponent implements OnInit {
     this.loginService.login(loginPayload).subscribe((data:any) => {
       // success login
       localStorage.setItem('token', data.result.token);
-      sessionStorage.setItem('username', this.loginForm.get('username').value);
+      sessionStorage.setItem('username', loginPayload.username);
       sessionStorage.setItem('role', data.result.roles[0].name);
       // check user role then navigate
       switch(data.result.roles[0].name) {
         case 'ADMIN':
-          // load employees, tasks, archives
-          this.employeeService.getEmployeeList();
-          this.taskService.getTaskList();
-          this.archiveService.getArchiveList();
           this.router.navigate(['/tasks']);
           break;
         case 'USER':

@@ -9,3 +9,9 @@
   border: 0 !important;
   border-radius: 0 !important;
 }
+
+.close {
+  text-shadow: none !important;
+  opacity: 100% !important;
+  font-weight: inherit;
+}
