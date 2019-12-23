@@ -2,19 +2,7 @@
   <div class="col-12">
     <div class="row">
       <div class="col-md-4">
-        <div class="card mb-4 shadow border-0 rounded-0">
-          <div class="card-body mb-0">
-            <p class="h5">Account info</p>
-            <hr>
-            <p class="h6">Username:</p>
-            <p>{{employee.username}}</p>
-            <p class="h6">Full name:</p>
-            <p>{{employee.name}}</p>
-            <p class="h6">Email:</p>
-            <p>{{employee.email}}</p>
-            <button class="btn btn-dark rounded-0" (click)="onEdit()">Edit account info</button>
-          </div>
-        </div>
+        <app-employee-edit [employee]="employee"></app-employee-edit>
       </div>
       <div class="col-md-8">
         <div class="card shadow border-0 rounded-0" *ngIf="employee.task !== null; else notShow">

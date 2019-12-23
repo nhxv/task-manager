@@ -5,12 +5,14 @@ import {RouterModule} from '@angular/router';
 import {EmployeeProfileRoutingModule} from './employee-profile.routing.module';
 import {EmployeeProfileComponent} from './employee-profile.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {EmployeeEditComponent} from '../employee-edit/employee-edit.component';
+import {EmployeeEditComponent} from './employee-edit/employee-edit.component';
+import { EmployeeEditModalComponent } from './employee-edit/employee-edit-modal/employee-edit-modal.component';
 
 @NgModule({
   declarations: [
     EmployeeProfileComponent,
-    EmployeeEditComponent
+    EmployeeEditComponent,
+    EmployeeEditModalComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -20,7 +22,7 @@ import {EmployeeEditComponent} from '../employee-edit/employee-edit.component';
     EmployeeProfileRoutingModule
   ],
   entryComponents: [
-    EmployeeEditComponent
+    EmployeeEditModalComponent
   ]
 })
 export class EmployeeProfileModule {}

@@ -4,7 +4,7 @@ import {EmployeeService} from '../employee.service';
 import {TaskService} from '../../tasks/task.service';
 import {Task} from 'src/app/tasks/task.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {EmployeeEditComponent} from '../employee-edit/employee-edit.component';
+import {EmployeeEditComponent} from './employee-edit/employee-edit.component';
 import {EmployeeApiService} from '../../api/employee-api.service';
 import {Subscription} from 'rxjs';
 import {take} from 'rxjs/operators';

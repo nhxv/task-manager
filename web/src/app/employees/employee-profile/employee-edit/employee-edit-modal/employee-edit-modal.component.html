@@ -1,28 +1,12 @@
 <div class="modal-content">
   <div class="modal-header rounded-0 border-0 bg-dark text-white py-0 px-3">
-    <p style="padding-top: 0.8rem;">Update account</p>
+    <p style="padding-top: 0.8rem;">Edit account</p>
     <button type="button" style="outline: none;" class="close py-0 mb-0 mt-2" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true" class="h4 text-white">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
-      <div class="row">
-        <div class="col-12">
-          <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" id="username" formControlName="username" class="form-control rounded-0">
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" formControlName="password" autocomplete="off" class="form-control rounded-0">
-          </div>
-        </div>
-      </div>
+    <form [formGroup]="editForm" (ngSubmit)="onUpdate()">
       <div class="row">
         <div class="col-12">
           <div class="form-group">
@@ -41,10 +25,9 @@
       </div>
       <div class="row">
         <div class="col-12">
-          <button class="btn btn-primary rounded-0 mt-1">Update</button>
+          <button class="btn btn-primary rounded-0 mt-1 mb-1">Update</button>
         </div>
       </div>
     </form>
   </div>
 </div>
-
