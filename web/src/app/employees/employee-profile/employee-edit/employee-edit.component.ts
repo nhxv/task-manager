@@ -1,22 +1,32 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Employee} from '../../employee.model';
-import {Subscription} from 'rxjs';
-import {EmployeeService} from '../../employee.service';
 import {EmployeeEditModalComponent} from './employee-edit-modal/employee-edit-modal.component';
+import {EmployeeService} from '../../employee.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-employee-edit',
   templateUrl: './employee-edit.component.html'
 })
-export class EmployeeEditComponent {
+export class EmployeeEditComponent implements OnInit, OnDestroy {
   @Input() employee: Employee;
+  employeeSub: Subscription;
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal, private employeeService: EmployeeService) {}
+
+  ngOnInit(): void {
+    this.employeeSub = this.employeeService.employeeChanged.subscribe((employeeData: Employee) => {
+      this.employee = employeeData;
+    });
+  }
 
   onEdit() {
     const modalRef = this.modalService.open(EmployeeEditModalComponent);
     modalRef.componentInstance.employee = this.employee;
+  }
+
+  ngOnDestroy(): void {
+    this.employeeSub.unsubscribe();
   }
 }

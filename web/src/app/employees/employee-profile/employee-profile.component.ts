@@ -3,8 +3,6 @@ import {Employee} from '../employee.model';
 import {EmployeeService} from '../employee.service';
 import {TaskService} from '../../tasks/task.service';
 import {Task} from 'src/app/tasks/task.model';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {EmployeeEditComponent} from './employee-edit/employee-edit.component';
 import {EmployeeApiService} from '../../api/employee-api.service';
 import {Subscription} from 'rxjs';
 import {take} from 'rxjs/operators';
@@ -20,7 +18,7 @@ export class EmployeeProfileComponent implements OnInit, OnDestroy {
   isDoing: boolean;
   isDone: boolean;
 
-  constructor(private employeeService: EmployeeService, private taskService: TaskService, private employeeApiService: EmployeeApiService, private modalService: NgbModal) {}
+  constructor(private employeeService: EmployeeService, private taskService: TaskService, private employeeApiService: EmployeeApiService) {}
 
   ngOnInit() {
     // get employee from database
@@ -39,10 +37,6 @@ export class EmployeeProfileComponent implements OnInit, OnDestroy {
         this.isDone = this.employee.task.status === 'DONE';
       }
     });
-  }
-
-  onEdit() {
-    this.modalService.open(EmployeeEditComponent);
   }
 
   onAccept() {

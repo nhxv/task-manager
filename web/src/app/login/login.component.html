@@ -1,17 +1,17 @@
-<div class="row justify-content-center">
-  <div class="col-md-6">
+<div class="row justify-content-center mb-4">
+  <div class="col-xl-6 col-lg-7 col-md-7">
     <div class="row">
       <div class="col-12">
-        <div class="card rounded-0 shadow border-0">
-          <div class="card-header bg-dark border-0 text-white rounded-0">Login form</div>
+        <div class="card shadow border-0 rounded-lg">
+          <div class="card-header bg-dark border-0 rounded-0 text-white">Login form</div>
           <div class="card-body">
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
               <div class="row">
                 <div class="col-12">
-                  <div class="alert alert-danger mb-3 rounded-0 border-0" *ngIf="errorMessage">{{this.errorMessage}}</div>
+                  <div class="alert alert-danger mb-3 border-0" *ngIf="errorMessage">{{this.errorMessage}}</div>
                   <div class="form-group">
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" formControlName="username" class="form-control rounded-0">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" formControlName="username" class="form-control bg-light rounded-sm">
                     <span class="text-danger" *ngIf="isEmptyField('username')">Invalid username</span>
                   </div>
                 </div>
@@ -19,15 +19,15 @@
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" formControlName="password" autocomplete="off" class="form-control rounded-0">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" formControlName="password" autocomplete="off" class="form-control bg-light rounded-sm">
                     <span class="text-danger" *ngIf="isEmptyField('password')">Invalid password</span>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-12">
-                  <button class="btn btn-primary rounded-0 mt-1" type="submit">Login</button>
+                  <button class="btn btn-primary rounded-sm mt-1" type="submit">Login</button>
                 </div>
               </div>
               <div class="row mt-2">

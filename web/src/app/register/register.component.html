@@ -2,15 +2,15 @@
   <div class="col-md-6">
     <div class="row">
       <div class="col-12">
-        <div class="card rounded-0 shadow border-0">
+        <div class="card shadow rounded-lg border-0">
           <div class="card-header bg-dark border-0 text-white rounded-0">Register form</div>
           <div class="card-body">
             <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" formControlName="username" class="form-control rounded-0">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" formControlName="username" class="form-control bg-light rounded-sm">
                     <span class="text-danger" *ngIf="isEmptyField('username')">Invalid username</span>
                   </div>
                 </div>
@@ -18,8 +18,8 @@
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" formControlName="password" autocomplete="off" class="form-control rounded-0">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" formControlName="password" autocomplete="off" class="form-control bg-light rounded-sm">
                     <span class="text-danger" *ngIf="isEmptyField('password')">Invalid password</span>
                   </div>
                 </div>
@@ -27,8 +27,8 @@
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
-                    <label for="name">Full name:</label>
-                    <input type="text" id="name" formControlName="name" class="form-control rounded-0">
+                    <label for="name">Full name</label>
+                    <input type="text" id="name" formControlName="name" class="form-control bg-light rounded-sm">
                     <span class="text-danger" *ngIf="isEmptyField('name')">Invalid name</span>
                   </div>
                 </div>
@@ -36,15 +36,15 @@
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" formControlName="email" class="form-control rounded-0">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" formControlName="email" class="form-control bg-light rounded-sm">
                     <span class="text-danger" *ngIf="isEmptyField('email')">Invalid email</span>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-12">
-                  <button class="btn btn-primary rounded-0 mt-1">Register</button>
+                  <button class="btn btn-primary rounded-sm mt-1">Register</button>
                 </div>
               </div>
               <div class="row mt-2">

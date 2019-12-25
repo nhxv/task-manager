@@ -22,8 +22,7 @@ export class EmployeeService {
 
   getEmployee(username: string) {
     this.employeeApiService.getEmployeeByUsername(username).subscribe((employeeData: Employee) => {
-      this.employee = employeeData;
-      this.employeeChanged.next({...this.employee});
+      this.setEmployee(employeeData);
     });
   }
 
@@ -36,28 +35,30 @@ export class EmployeeService {
     this.employeeApiService.createEmployee(employee).subscribe(data => {
       console.log(data);
     });
-    this.employeeApiService.getEmployeeList().subscribe((employeeData: Employee[]) => {
-      this.employees = employeeData;
+    this.employeeApiService.getEmployeeList().subscribe((employeesData: Employee[]) => {
+      this.employees = employeesData;
       this.employeesChanged.next(this.employees.slice());
     });
   }
 
   updateEmployee(id: number, employeeUpdate: Employee) {
     this.employeeApiService.updateEmployee(id, employeeUpdate).subscribe(() => {
-      // check role
       if (this.authService.isAdmin()) {
-        this.employeeApiService.getEmployeeList().subscribe((employeeData: Employee[]) => {
-          this.employees = employeeData;
+        this.employeeApiService.getEmployeeList().subscribe((employeesData: Employee[]) => {
+          this.employees = employeesData;
           this.employeesChanged.next(this.employees.slice());
         });
       }
+      this.employeeApiService.getEmployee(id).subscribe((employeeData: Employee) => {
+        this.setEmployee(employeeData);
+      });
     });
   }
 
   changeEmployeeTask() {
     if (this.authService.isAdmin()) {
-      this.employeeApiService.getEmployeeList().subscribe((employeeData: Employee[]) => {
-        this.employees = employeeData;
+      this.employeeApiService.getEmployeeList().subscribe((employeesData: Employee[]) => {
+        this.employees = employeesData;
         this.employeesChanged.next(this.employees.slice());
       });
     }
@@ -66,8 +67,8 @@ export class EmployeeService {
   deleteEmployee(id: number) {
     this.employeeApiService.deleteEmployee(id).subscribe(() => {
       if (this.authService.isAdmin()) {
-        this.employeeApiService.getEmployeeList().subscribe((employeeData: Employee[]) => {
-          this.employees = employeeData;
+        this.employeeApiService.getEmployeeList().subscribe((employeesData: Employee[]) => {
+          this.employees = employeesData;
           this.employeesChanged.next(this.employees.slice());
         });
       }

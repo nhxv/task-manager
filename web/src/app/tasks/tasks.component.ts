@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-tasks',
@@ -6,7 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent implements OnInit {
+  searchForm: FormGroup;
+
   constructor() { }
-  ngOnInit() {}
+  ngOnInit() {
+    this.initForm();
+  }
+
+  initForm() {
+    this.searchForm = new FormGroup({
+      field: new FormControl('')
+    });
+  }
 
 }

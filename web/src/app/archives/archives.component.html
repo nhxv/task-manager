@@ -1,6 +1,20 @@
-<div class="row">
+<div class="row justify-content-center">
+  <div class="col-lg-6 col-md-7 mb-4">
+    <form [formGroup]="searchForm">
+      <div class="form-group rounded-lg border shadow-sm">
+        <div class="input-group input-group-lg">
+          <div class="input-group-append">
+            <span class="input-group-text border-0 bg-transparent"><i class="material-icons">search</i></span>
+          </div>
+          <input type="text" class="form-control border-0" placeholder="Search task archive">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row mt-4">
   <div class="col-md-4" *ngFor="let archive of archiveList">
-    <div class="card rounded-0 shadow border-0 mb-4">
+    <div class="card rounded-lg shadow border-0 mb-4">
       <div class="card-body">
         <button type="button" class="close text-danger" aria-label="Close" style="outline: none;" (click)="onDeleteArchive(archive.id)"><span aria-hidden="true">&times;</span></button>
         <p class="h5">{{archive.name}}</p>

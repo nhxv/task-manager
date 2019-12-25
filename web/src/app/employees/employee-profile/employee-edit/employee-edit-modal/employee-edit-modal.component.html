@@ -1,4 +1,4 @@
-<div class="modal-content">
+<div class="modal-content rounded-lg">
   <div class="modal-header rounded-0 border-0 bg-dark text-white py-0 px-3">
     <p style="padding-top: 0.8rem;">Edit account</p>
     <button type="button" style="outline: none;" class="close py-0 mb-0 mt-2" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
@@ -11,7 +11,7 @@
         <div class="col-12">
           <div class="form-group">
             <label for="name">Full name:</label>
-            <input type="text" id="name" formControlName="name" class="form-control rounded-0">
+            <input type="text" id="name" formControlName="name" class="form-control rounded-sm bg-light">
           </div>
         </div>
       </div>
@@ -19,13 +19,13 @@
         <div class="col-12">
           <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" id="email" formControlName="email" class="form-control rounded-0">
+            <input type="email" id="email" formControlName="email" class="form-control rounded-sm bg-light">
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-12">
-          <button class="btn btn-primary rounded-0 mt-1 mb-1">Update</button>
+          <button class="btn btn-primary rounded-sm mt-1 mb-1">Update</button>
         </div>
       </div>
     </form>

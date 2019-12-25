@@ -1,14 +1,14 @@
 <div class="row mb-4">
   <div class="col-12">
-    <div class="card border-0 rounded-0 shadow">
+    <div class="card border-0 rounded-lg shadow">
       <div class="card-header bg-dark text-white border-0 rounded-0">Task form</div>
       <div class="card-body">
         <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
           <div class="row">
             <div class="col-12">
               <div class="form-group">
-                <label for="task-name">Name:</label>
-                <input type="text" id="task-name" class="form-control rounded-0" formControlName="name">
+                <label for="task-name">Name</label>
+                <input type="text" id="task-name" class="form-control bg-light rounded-sm" formControlName="name">
                 <span class="text-danger" *ngIf="isEmptyField('name')">Invalid name</span>
               </div>
             </div>
@@ -16,19 +16,19 @@
           <div class="row">
             <div class="col-12">
               <div class="form-group">
-                <label for="task-description">Description:</label>
-                <textarea id="task-description" class="form-control rounded-0" rows="4" formControlName="description"></textarea>
+                <label for="task-description">Description</label>
+                <textarea id="task-description" class="form-control bg-light rounded-sm" rows="4" formControlName="description"></textarea>
                 <span class="text-danger" *ngIf="isEmptyField('description')">Invalid description</span>
               </div>
             </div>
           </div>
           <div class="row mb-3 mt-1">
             <div class="col-12">
-              <label>Employee:</label>
+              <label>Employee</label>
               <br>
               <div class="d-inline-block">
                 <!--display employee list if not in edit mode, otherwise display employee list in edit-->
-                <select class="btn rounded-0 form-control" *ngIf="!editMode"
+                <select class="btn rounded-sm form-control bg-light" *ngIf="!editMode"
                         style="border: 1px solid #ced4da;" (ngModelChange)="onAssignEmployee($event)" formControlName="employee">
                   <option *ngFor="let employee of employeeList" [ngValue]="employee">{{employee.name}}</option>
                 </select>
@@ -41,7 +41,7 @@
           </div>
           <div class="row">
             <div class="col-12">
-              <button type="submit" class="btn btn-primary rounded-0 mt-1" [disabled]="!taskForm.valid">{{editMode ? 'Update task' : 'Add task'}}</button>
+              <button type="submit" class="btn btn-primary rounded-sm mt-1" [disabled]="!taskForm.valid">{{editMode ? 'Update task' : 'Add task'}}</button>
             </div>
           </div>
         </form>

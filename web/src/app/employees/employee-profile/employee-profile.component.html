@@ -5,21 +5,21 @@
         <app-employee-edit [employee]="employee"></app-employee-edit>
       </div>
       <div class="col-md-8">
-        <div class="card shadow border-0 rounded-0" *ngIf="employee.task !== null; else notShow">
+        <div class="card shadow border-0 rounded-lg" *ngIf="employee.task !== null; else notShow">
           <div class="card-body mb-0">
             <p class="card-title h5">{{employee.task?.name}}</p>
             <hr>
-            <div class="alert alert-success border-0 rounded-0" *ngIf="isDone">Waiting for confirmation</div>
+            <div class="alert alert-success border-0 rounded-sm" *ngIf="isDone">Waiting for confirmation</div>
             <p class="h6">Description:</p>
             <p>{{employee.task?.description}}</p>
             <p class="h6">Status:</p>
             <p>{{employee.task?.status}}</p>
-            <button class="btn btn-primary rounded-0" (click)="onAccept()" *ngIf="!isDoing && !isDone">Accept task</button>
-            <button class="btn btn-success rounded-0" (click)="onDone()" *ngIf="isDoing">Done</button>
+            <button class="btn btn-primary rounded-sm" (click)="onAccept()" *ngIf="!isDoing && !isDone">Accept task</button>
+            <button class="btn btn-success rounded-sm" (click)="onDone()" *ngIf="isDoing">Done</button>
           </div>
         </div>
         <ng-template #notShow>
-          <div class="alert alert-warning border-0 rounded-0">
+          <div class="alert alert-warning border-0 rounded-sm">
             There's no task to work on.
           </div>
         </ng-template>

@@ -8,7 +8,13 @@ import {AuthService} from '../auth/auth.service';
 })
 export class HeaderComponent {
   isNavbarCollapsed = true;
+  isOpen = false;
 
   constructor(private authService: AuthService) {}
+
+  onMenu() {
+    this.isNavbarCollapsed = !this.isNavbarCollapsed;
+    this.isOpen = !this.isOpen;
+  }
 
 }
