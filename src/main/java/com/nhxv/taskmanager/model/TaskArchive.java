@@ -1,9 +1,13 @@
 package com.nhxv.taskmanager.model;
 
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "task_archive")
+@Indexed
 public class TaskArchive {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -11,12 +15,14 @@ public class TaskArchive {
     private long id;
 
     @Column(name = "name")
+    @Field
     private String name;
 
     @Column(name = "description")
     private String description;
 
     @Column(name = "employee_name")
+    @Field
     private String employeeName;
 
     public TaskArchive() {}

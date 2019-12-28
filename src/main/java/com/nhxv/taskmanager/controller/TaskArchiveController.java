@@ -3,6 +3,7 @@ package com.nhxv.taskmanager.controller;
 import com.nhxv.taskmanager.exception.ResourceNotFoundException;
 import com.nhxv.taskmanager.model.TaskArchive;
 import com.nhxv.taskmanager.repository.TaskArchiveRepository;
+import com.nhxv.taskmanager.service.TaskArchiveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,10 +18,12 @@ import java.util.Map;
 @CrossOrigin(origins = "*")
 public class TaskArchiveController {
     private TaskArchiveRepository taskArchiveRepository;
+    private TaskArchiveService taskArchiveService;
 
     @Autowired
-    public TaskArchiveController(TaskArchiveRepository taskArchiveRepository) {
+    public TaskArchiveController(TaskArchiveRepository taskArchiveRepository, TaskArchiveService taskArchiveService) {
         this.taskArchiveRepository = taskArchiveRepository;
+        this.taskArchiveService = taskArchiveService;
     }
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -34,6 +37,15 @@ public class TaskArchiveController {
     public ResponseEntity<TaskArchive> getTaskArchive(@PathVariable(value = "id") long taskArchiveId) throws ResourceNotFoundException {
         TaskArchive taskArchive = this.taskArchiveRepository.findById(taskArchiveId).orElseThrow(() -> new ResourceNotFoundException("Task archive not found: " + taskArchiveId));
         return ResponseEntity.ok().body(taskArchive);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/task-archives/search")
+    public List<TaskArchive> findTaskArchives(@RequestParam(value="q", required = false) String searchText) {
+        if (searchText == null) {
+            return null;
+        }
+        return taskArchiveService.findTaskArchives(searchText);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
