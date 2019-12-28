@@ -2,7 +2,7 @@
 A task management web app
 
 ### Built with
-HTML, CSS, NgBootstrap, Typescript, Angular, Maven, Spring Boot, Spring Security, Spring Data JPA, Hibernate Search, MySQL
+HTML, CSS, NgBootstrap, Typescript, Angular 8, Maven, Spring Boot, Spring Security, Spring Data JPA, Hibernate Search, MySQL
 
 ### Installation
 You'll need to install MySQL and an IDE that can run Maven project.
