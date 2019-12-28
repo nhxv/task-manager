@@ -5,7 +5,7 @@ A task management full stack web application
 HTML, CSS, NgBootstrap, Typescript, Angular 8, Maven, Java, Spring Boot, Spring Security, Spring Data JPA, Hibernate Search, MySQL
 
 ### Installation
-Follow these steps to run this application on local server:
+Follow these steps to run this application on your local server:
 1. Run create-user in /sql-script directory to create a new database user
 2. Run Spring boot application to create database tables
 3. Run init in /sql-script directory to create an admin account (username: admin, password: password)
