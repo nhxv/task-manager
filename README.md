@@ -9,7 +9,7 @@ Follow these steps to run this application on local server:
 1. Run create-user in /sql-script directory to create a new database user
 2. Run Spring boot application to create database tables
 3. Run init in /sql-script directory to create an admin account (username: admin, password: password)
-4. Run Angular dev server with command ng-serve
+4. Run Angular dev server with command ng-serve in /web directory
 
 
 
