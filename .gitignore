@@ -31,4 +31,4 @@ build/
 .vscode/
 
 ### Search index ###
-/com.nhxv.taskmanager.model.TaskArchive
+/com.nhxv.taskmanager.model.TaskArchive/
