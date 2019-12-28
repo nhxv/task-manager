@@ -1,4 +1,4 @@
-# Task manager
+## Task manager
 A task management web app
 
 ### Technologies used
