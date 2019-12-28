@@ -29,3 +29,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Search index ###
+/com.nhxv.taskmanager.model.TaskArchive
