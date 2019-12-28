@@ -1,12 +1,10 @@
 ## Task manager
-A task management web app
+A task management web application
 
 ### Built with
 HTML, CSS, NgBootstrap, Typescript, Angular 8, Maven, Spring Boot, Spring Security, Spring Data JPA, Hibernate Search, MySQL
 
 ### Installation
-You'll need to install MySQL and an IDE that can run Maven project.
-
 Follow these steps to run this application on local server:
 1. Run create-user sql script to generate a new database user
 2. Run Spring boot application to generate database tables
