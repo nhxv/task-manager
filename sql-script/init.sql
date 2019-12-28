@@ -1,4 +1,4 @@
-use mytodo;
+USE taskmanager;
 INSERT IGNORE INTO `role` VALUES
 (1, 'Admin role', 'ADMIN'),
 (2, 'User role', 'USER');
