@@ -1,5 +1,5 @@
 ## Task manager
-A task management full stack web application
+A full stack web application
 
 ### Built with
 HTML, CSS, NgBootstrap, Typescript, Angular 8, Maven, Java, Spring Boot, Spring Security, Spring Data JPA, Hibernate Search, MySQL
