@@ -24,8 +24,6 @@ public class Employee {
     private String name;
     @Column
     private String email;
-
-    // when delete an employee, don't cascade delete the task
     @OneToOne(mappedBy = "employee")
     private Task task;
 

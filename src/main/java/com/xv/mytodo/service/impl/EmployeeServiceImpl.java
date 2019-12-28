@@ -73,6 +73,7 @@ public class EmployeeServiceImpl implements UserDetailsService, EmployeeService 
     @Override
     public Employee save(EmployeeDto employee) {
         Employee newEmployee = new Employee();
+        // auto set role to USER
         Role userRole = this.roleRepository.findById(Long.valueOf(2)).get();
         Set<Role> roles = new HashSet<>();
         roles.add(userRole);
