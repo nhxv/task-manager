@@ -8,6 +8,10 @@ export class ArchiveApiService {
 
   constructor(private http: HttpClient) {}
 
+  findTaskArchive(query: string): Observable<Object> {
+    return this.http.get(`${this.baseUrl}/search?q=${query}`);
+  }
+
   getTaskArchive(id: number): Observable<Object> {
     return this.http.get(`${this.baseUrl}/${id}`);
   }

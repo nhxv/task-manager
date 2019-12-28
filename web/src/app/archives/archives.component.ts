@@ -31,6 +31,11 @@ export class ArchivesComponent implements OnInit, OnDestroy {
     });
   }
 
+  onSubmitSearch() {
+    const query = this.searchForm.get('query').value;
+    this.archiveService.findArchive(query);
+  }
+
   onDeleteArchive(id: number) {
     this.archiveService.deleteArchive(id);
   }
@@ -38,6 +43,4 @@ export class ArchivesComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.archiveListSub.unsubscribe();
   }
-
-
 }

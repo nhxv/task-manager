@@ -77,10 +77,11 @@ export class TaskFormComponent implements OnInit {
     this.employeeSelected.task = null;
 
     //set task status to ASSIGN
-    const status = 'ASSIGN';
+    const status = 'assign';
 
     // create task object for submission
     const taskInput = new Task(this.taskForm.get('name').value, this.taskForm.get('description').value, this.employeeSelected, status);
+    console.log('Task created ' + JSON.stringify(taskInput));
 
     // if edit mode, update task; create task otherwise
     if (this.editMode) {

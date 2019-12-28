@@ -43,4 +43,12 @@ export class ArchiveService {
       this.archivesChanged.next(this.archives.slice());
     })
   }
+
+  findArchive(query: string) {
+    this.archiveApiService.findTaskArchive(query).subscribe((archiveData: Archive[]) => {
+      this.archives = archiveData;
+      this.archivesChanged.next(this.archives.slice());
+    })
+  }
+
 }
