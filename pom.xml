@@ -8,11 +8,11 @@
 		<version>2.2.0.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.xv.mytodo</groupId>
-	<artifactId>mytodo</artifactId>
+	<groupId>com.nhxv.taskmanager</groupId>
+	<artifactId>taskmanager</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>mytodo</name>
-	<description>My Todo</description>
+	<name>taskmanager</name>
+	<description>A task management web app</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
