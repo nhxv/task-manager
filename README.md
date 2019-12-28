@@ -2,7 +2,7 @@
 A full stack web application
 
 ### Built with
-HTML, CSS, NgBootstrap, Typescript, Angular 8, Maven, Java, Spring Boot, Spring Security, Spring Data JPA, Hibernate Search, MySQL
+HTML, CSS, NgBootstrap, Typescript, Angular, Maven, Java, Spring Boot, Spring Security, Spring Data JPA, Hibernate Search, MySQL
 
 ### Installation
 Follow these steps to run this application on your local server:
