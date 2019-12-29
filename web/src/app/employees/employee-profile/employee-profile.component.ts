@@ -59,6 +59,27 @@ export class EmployeeProfileComponent implements OnInit, OnDestroy {
     this.taskService.updateTask(id, task);
   }
 
+  setBtnColor() {
+    if (!this.isDoing && !this.isDone) {
+      return 'btn-primary';
+    }
+
+    if(this.isDoing) {
+      return 'btn-success';
+    }
+  }
+
+  setTaskColor() {
+    switch(this.employee.task.status) {
+      case 'ASSIGN':
+        return 'text text-danger';
+      case 'DOING':
+        return 'text text-warning';
+      case 'DONE':
+        return 'text text-success';
+    }
+  }
+
   ngOnDestroy(): void {
     this.employeeSub.unsubscribe();
   }

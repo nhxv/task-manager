@@ -18,6 +18,7 @@ export class TaskFormComponent implements OnInit {
   employeeList: Employee[];
   employeeListInEdit: Employee[];
   employeeSelected: Employee = null;
+  errorMessage: string = null;
 
   constructor(private taskService: TaskService, private employeeService: EmployeeService) { }
 
@@ -68,6 +69,15 @@ export class TaskFormComponent implements OnInit {
   }
 
   onSubmit() {
+    // invalid form
+    if (!this.taskForm.valid) {
+      this.errorMessage = 'Please fill in all required fields.';
+      setInterval(() => {
+        this.errorMessage = null;
+      }, 2000);
+      return;
+    }
+
     // auto select first employee if none is selected
     if (!this.employeeSelected && this.employeeList[0] && !this.editMode) {
       this.employeeSelected = this.employeeList[0];
@@ -77,11 +87,10 @@ export class TaskFormComponent implements OnInit {
     this.employeeSelected.task = null;
 
     //set task status to ASSIGN
-    const status = 'assign';
+    const status = 'ASSIGN';
 
     // create task object for submission
     const taskInput = new Task(this.taskForm.get('name').value, this.taskForm.get('description').value, this.employeeSelected, status);
-    console.log('Task created ' + JSON.stringify(taskInput));
 
     // if edit mode, update task; create task otherwise
     if (this.editMode) {

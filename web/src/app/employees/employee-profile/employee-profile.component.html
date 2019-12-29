@@ -5,17 +5,19 @@
         <app-employee-edit [employee]="employee"></app-employee-edit>
       </div>
       <div class="col-md-8">
+        <div class="alert alert-success border-0 rounded-sm" *ngIf="isDone">Waiting for confirmation</div>
         <div class="card shadow border-0 rounded-lg" *ngIf="employee.task !== null; else notShow">
           <div class="card-body mb-0">
-            <p class="card-title h5">{{employee.task?.name}}</p>
-            <hr>
-            <div class="alert alert-success border-0 rounded-sm" *ngIf="isDone">Waiting for confirmation</div>
-            <p class="h6">Description:</p>
-            <p>{{employee.task?.description}}</p>
-            <p class="h6">Status:</p>
-            <p>{{employee.task?.status}}</p>
-            <button class="btn btn-primary rounded-sm" (click)="onAccept()" *ngIf="!isDoing && !isDone">Accept task</button>
-            <button class="btn btn-success rounded-sm" (click)="onDone()" *ngIf="isDoing">Done</button>
+            <div class="float-right">
+              <button class="btn rounded-sm mb-0 mt-2 float-right"
+                      [ngClass]="setBtnColor()" (click)="onAccept()" *ngIf="!isDoing && !isDone">Accept task</button>
+              <button class="btn rounded-sm mb-0 mt-2 float-right"
+                      [ngClass]="setBtnColor()" (click)="onDone()" *ngIf="isDoing">Done</button>
+            </div>
+            <div class="float-left">
+              <p class="card-title h5 mb-0" [ngClass]="setTaskColor()" style="text-transform: uppercase;">{{employee.task?.name}}</p>
+              <p class="mb-0">{{employee.task?.description}}</p>
+            </div>
           </div>
         </div>
         <ng-template #notShow>

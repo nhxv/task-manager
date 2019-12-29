@@ -40,6 +40,17 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this.onDeleteTask(task.id);
   }
 
+  setTaskColor(task) {
+    switch(task.status) {
+      case 'ASSIGN':
+        return 'text-danger';
+      case 'DOING':
+        return 'text-warning';
+      case 'DONE':
+        return 'text-success';
+    }
+  }
+
   ngOnDestroy(): void {
     this.taskListSub.unsubscribe();
   }
