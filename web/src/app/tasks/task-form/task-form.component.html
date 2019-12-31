@@ -1,6 +1,6 @@
 <div class="row mb-4">
   <div class="col-12">
-    <div class="card border-0 rounded-lg shadow">
+    <div class="card border-0 rounded-lg shadow-sm">
       <div class="card-header bg-dark text-white border-0 rounded-0">Task Form</div>
       <div class="card-body">
         <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
@@ -9,7 +9,7 @@
               <div class="alert alert-danger border-0 rounded-lg mb-3" *ngIf="errorMessage">{{this.errorMessage}}</div>
               <div class="form-group">
                 <label for="task-name">Name</label>
-                <input type="text" id="task-name" class="form-control bg-light rounded-sm" formControlName="name">
+                <input type="text" id="task-name" class="form-control shadow-sm rounded-sm" formControlName="name">
                 <span class="text-danger" *ngIf="isEmptyField('name')">Invalid name</span>
               </div>
             </div>
@@ -18,7 +18,7 @@
             <div class="col-12">
               <div class="form-group">
                 <label for="task-description">Description</label>
-                <textarea id="task-description" class="form-control bg-light rounded-sm" rows="4" formControlName="description"></textarea>
+                <textarea id="task-description" class="form-control shadow-sm rounded-sm" rows="4" formControlName="description"></textarea>
                 <span class="text-danger" *ngIf="isEmptyField('description')">Invalid description</span>
               </div>
             </div>
@@ -29,7 +29,7 @@
               <br>
               <div class="d-inline-block">
                 <!--display employee list if not in edit mode, otherwise display employee list in edit-->
-                <select class="btn rounded-sm form-control bg-light" *ngIf="!editMode"
+                <select class="btn rounded-sm form-control shadow-sm" *ngIf="!editMode"
                         style="border: 1px solid #ced4da;" (ngModelChange)="onAssignEmployee($event)" formControlName="employee">
                   <option *ngFor="let employee of employeeList" [ngValue]="employee">{{employee.name}}</option>
                 </select>

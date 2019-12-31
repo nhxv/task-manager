@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
   <div class="col-lg-6 col-md-7 mb-4">
     <form [formGroup]="searchForm" (ngSubmit)="onSubmitSearch()">
-      <div class="form-group rounded-lg border shadow-sm">
+      <div class="form-group rounded-lg shadow-sm">
         <div class="input-group input-group-lg">
           <div class="input-group-append">
             <span class="input-group-text border-0 bg-transparent"><i class="material-icons">search</i></span>
@@ -14,7 +14,7 @@
 </div>
 <div class="row mt-4">
   <div class="col-md-4" *ngFor="let archive of archiveList">
-    <div class="card rounded-lg shadow border-0 mb-4">
+    <div class="card rounded-lg shadow-sm border-0 mb-4">
       <div class="card-body">
         <button type="button" class="close text-danger" aria-label="Close" style="outline: none;" (click)="onDeleteArchive(archive.id)"><i class="material-icons" style="font-size: 20px">clear</i></button>
         <p class="h5 mb-1" style="text-transform: uppercase;">{{archive.name}}</p>

@@ -7,12 +7,14 @@ import {CommonModule} from '@angular/common';
 import {TasksRoutingModule} from './tasks-routing.module';
 import {TasksComponent} from './tasks.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { TaskStatusColorComponent } from './task-status-color/task-status-color.component';
 
 @NgModule({
   declarations: [
     TaskListComponent,
     TaskFormComponent,
-    TasksComponent
+    TasksComponent,
+    TaskStatusColorComponent
   ],
   imports: [
     RouterModule,
