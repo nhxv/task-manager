@@ -6,8 +6,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-archives',
-  templateUrl: './archives.component.html',
-  styleUrls: ['./archives.component.css']
+  templateUrl: './archives.component.html'
 })
 export class ArchivesComponent implements OnInit, OnDestroy {
   searchForm: FormGroup;

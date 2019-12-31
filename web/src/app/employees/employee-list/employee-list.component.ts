@@ -5,8 +5,7 @@ import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-employee-list',
-  templateUrl: './employee-list.component.html',
-  styleUrls: ['./employee-list.component.css']
+  templateUrl: './employee-list.component.html'
 })
 export class EmployeeListComponent implements OnInit, OnDestroy {
   employeeList: Employee[] = [];

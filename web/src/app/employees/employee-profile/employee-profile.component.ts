@@ -9,8 +9,7 @@ import {take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-employee-profile',
-  templateUrl: './employee-profile.component.html',
-  styleUrls: ['./employee-profile.component.css']
+  templateUrl: './employee-profile.component.html'
 })
 export class EmployeeProfileComponent implements OnInit, OnDestroy {
   employee: Employee;

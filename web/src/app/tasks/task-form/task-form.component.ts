@@ -8,8 +8,7 @@ import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-task-form',
-  templateUrl: './task-form.component.html',
-  styleUrls: ['./task-form.component.css']
+  templateUrl: './task-form.component.html'
 })
 export class TaskFormComponent implements OnInit {
   taskForm: FormGroup;
