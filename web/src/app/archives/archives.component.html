@@ -3,9 +3,7 @@
     <form [formGroup]="searchForm" (ngSubmit)="onSubmitSearch()">
       <div class="form-group rounded-lg shadow-sm">
         <div class="input-group input-group-lg">
-          <div class="input-group-append">
-            <span class="input-group-text border-0 bg-transparent"><i class="material-icons">search</i></span>
-          </div>
+          <i class="material-icons pl-3" style="color: #495057; padding-top: 13px;">search</i>
           <input type="text" class="form-control border-0" formControlName="query" placeholder="Search task archive">
         </div>
       </div>

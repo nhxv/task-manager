@@ -7,15 +7,16 @@
       <div class="col-md-8">
         <div class="alert alert-success border-0 rounded-sm" *ngIf="isDone">Waiting for confirmation</div>
         <div class="card shadow-sm mb-4 border-0 rounded-lg" *ngIf="employee.task !== null; else notShow">
+          <div [ngClass]="setTaskColor()" style="padding: 2px;"></div>
           <div class="card-body mb-0">
             <div class="float-right">
-              <button class="btn rounded-sm mb-0 mt-2 float-right"
+              <button class="btn rounded-sm mb-0 mt-1 float-right"
                       [ngClass]="setBtnColor()" (click)="onAccept()" *ngIf="!isDoing && !isDone">Accept task</button>
-              <button class="btn rounded-sm mb-0 mt-2 float-right"
+              <button class="btn rounded-sm mb-0 mt-1 float-right"
                       [ngClass]="setBtnColor()" (click)="onDone()" *ngIf="isDoing">Done</button>
             </div>
             <div class="float-left">
-              <p class="card-title h5 mb-0" [ngClass]="setTaskColor()" style="text-transform: uppercase;">{{employee.task?.name}}</p>
+              <p class="card-title h5 mb-0" style="text-transform: uppercase;">{{employee.task?.name}}</p>
               <p class="mb-0">{{employee.task?.description}}</p>
             </div>
           </div>

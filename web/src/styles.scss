@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
 $gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
 $gray-700: #495057;
 $gray-900: #212529;
 $green: #38A169;
@@ -8,9 +11,9 @@ $blue: #5A67D8;
 $cyan: #63B3ED;
 $yellow: #F6E05E;
 $dark: $gray-900;
-$pink: rgb(233, 30, 99);
+$pink: #FC8181;
 $red: #E53E3E;
-$orange: #DD6B20;
+$orange: #F6AD55;
 $border-radius: .3rem;
 $border-radius-lg: .4rem;
 $border-color: $gray-100;
@@ -22,18 +25,23 @@ $info: $cyan;
 $warning: $yellow;
 $danger: $red;
 
+$input-border-color: $gray-300;
 
+// remove button glow
+.btn:focus, .btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+// remove input glow
 .form-control {
   &:focus {
     box-shadow: none !important;
-    /* your new styles */
-    border: 1px solid $primary;
   }
 }
 
 .modal-content {
   border: 0 !important;
-  border-radius: .25rem !important;
 }
 
 .close {

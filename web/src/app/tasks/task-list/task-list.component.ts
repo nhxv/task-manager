@@ -42,11 +42,11 @@ export class TaskListComponent implements OnInit, OnDestroy {
   setTaskColor(task) {
     switch(task.status) {
       case 'ASSIGN':
-        return 'text-danger';
+        return 'bg-danger';
       case 'DOING':
-        return 'text-warning';
+        return 'bg-warning';
       case 'DONE':
-        return 'text-success';
+        return 'bg-success';
     }
   }
 

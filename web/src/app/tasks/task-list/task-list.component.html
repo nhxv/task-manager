@@ -1,15 +1,16 @@
 <div class="card mb-4 shadow-sm border-0 rounded-lg" *ngFor="let task of taskList">
+  <div [ngClass]="setTaskColor(task)" style="padding: 2px;"></div>
   <div class="card-body mb-0">
     <!--change text color based on status-->
-    <div class="close" [ngClass]="setTaskColor(task)">
+    <div class="close">
       <a class="mr-2" (click)="onEditTask(task.id)"><i class="material-icons" style="font-size: 20px; cursor:pointer;">edit</i></a>
       <a (click)="onDeleteTask(task.id)"><i class="material-icons" style="font-size: 20px; cursor:pointer;">clear</i></a>
     </div>
     <div>
-      <p class="h5 mb-1" [ngClass]="setTaskColor(task)" style="text-transform: uppercase;">{{task.name}}</p>
+      <p class="h5 mb-1" style="text-transform: uppercase;">{{task.name}}</p>
       <p class="mb-0">{{task.description}}</p>
       <p class="mb-0">{{task.employee.name}}</p>
-      <button class="btn btn-success mt-3 rounded-sm" type="button" (click)="onArchiveTask(task)" *ngIf="task.status === 'DONE'">Archive task</button>
+      <button class="btn btn-success rounded-sm mt-3" type="button" (click)="onArchiveTask(task)" *ngIf="task.status === 'DONE'">Archive task</button>
     </div>
   </div>
 </div>

@@ -69,13 +69,15 @@ export class EmployeeProfileComponent implements OnInit, OnDestroy {
   }
 
   setTaskColor() {
-    switch(this.employee.task.status) {
-      case 'ASSIGN':
-        return 'text text-danger';
-      case 'DOING':
-        return 'text text-warning';
-      case 'DONE':
-        return 'text text-success';
+    if (this.employee.task) {
+      switch(this.employee.task.status) {
+        case 'ASSIGN':
+          return 'bg-danger';
+        case 'DOING':
+          return 'bg-warning';
+        case 'DONE':
+          return 'bg-success';
+      }
     }
   }
 
