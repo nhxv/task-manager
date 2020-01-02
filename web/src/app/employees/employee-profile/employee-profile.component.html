@@ -9,16 +9,12 @@
         <div class="card shadow-sm mb-4 border-0 rounded-lg" *ngIf="employee.task !== null; else notShow">
           <div [ngClass]="setTaskColor()" style="padding: 2px;"></div>
           <div class="card-body mb-0">
-            <div class="close">
-              <button class="btn rounded-sm mb-0 mt-1"
-                      [ngClass]="setBtnColor()" (click)="onAccept()" *ngIf="!isDoing && !isDone">Accept</button>
-              <button class="btn rounded-sm mb-0 mt-1"
-                      [ngClass]="setBtnColor()" (click)="onDone()" *ngIf="isDoing">Finish</button>
-            </div>
-            <div>
-              <p class="card-title h5 mb-0" style="text-transform: uppercase;">{{employee.task?.name}}</p>
-              <p class="mb-0">{{employee.task?.description}}</p>
-            </div>
+            <p class="card-title h5 mb-0" style="text-transform: uppercase;">{{employee.task?.name}}</p>
+            <p class="mb-0">{{employee.task?.description}}</p>
+            <button class="btn rounded-sm mt-3"
+                    [ngClass]="setBtnColor()" (click)="onAccept()" *ngIf="!isDoing && !isDone">Accept task</button>
+            <button class="btn rounded-sm mt-3"
+                    [ngClass]="setBtnColor()" (click)="onDone()" *ngIf="isDoing">Finish task</button>
           </div>
         </div>
         <ng-template #notShow>
