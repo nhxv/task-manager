@@ -14,8 +14,8 @@ import {take} from 'rxjs/operators';
 export class EmployeeProfileComponent implements OnInit, OnDestroy {
   employee: Employee;
   employeeSub: Subscription;
-  isDoing: boolean;
-  isDone: boolean;
+  isDoing: boolean = false;
+  isDone: boolean = false;
 
   constructor(private employeeService: EmployeeService, private taskService: TaskService, private employeeApiService: EmployeeApiService) {}
 
@@ -34,6 +34,10 @@ export class EmployeeProfileComponent implements OnInit, OnDestroy {
       if (this.employee.task) {
         this.isDoing = this.employee.task.status === 'DOING';
         this.isDone = this.employee.task.status === 'DONE';
+      } else {
+        // no task
+        this.isDone = false;
+        this.isDoing = false;
       }
     });
   }
