@@ -11,9 +11,9 @@ Admin account can:
 
 Employee account can:
 - view, accept and complete task
-- edit personal account information
+- edit personal information
 
-*Due to 1-1 relationship between employee and task, admin can only assign one task to each employee 
+*Due to 1-1 relationship between employee and task, admin can only assign one task to each employee. 
 
 ### Built with
 HTML, CSS, SCSS, NgBootstrap, Typescript, Angular, Maven, Java, Spring Boot, Spring Security, Spring Data JPA, Hibernate Search, MySQL
