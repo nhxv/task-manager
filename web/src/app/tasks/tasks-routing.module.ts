@@ -1,10 +1,11 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {TasksComponent} from './tasks.component';
-import {AuthGuard} from '../auth/auth.guard';
+import {UserGuard} from '../auth/user.guard';
+import {AdminGuard} from '../auth/admin.guard';
 
 const tasksRoutes: Routes = [
-  {path: '', component: TasksComponent, canActivate: [AuthGuard]}
+  {path: '', component: TasksComponent, canActivate: [AdminGuard]}
 ];
 @NgModule({
   imports: [RouterModule.forChild(tasksRoutes)],

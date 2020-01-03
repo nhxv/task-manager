@@ -1,10 +1,11 @@
 import {RouterModule, Routes} from '@angular/router';
-import {AuthGuard} from '../../auth/auth.guard';
+import {UserGuard} from '../../auth/user.guard';
 import {NgModule} from '@angular/core';
 import {EmployeeListComponent} from './employee-list.component';
+import {AdminGuard} from '../../auth/admin.guard';
 
 const employeeListRoutes: Routes = [
-  {path: '', component: EmployeeListComponent, canActivate: [AuthGuard]}
+  {path: '', component: EmployeeListComponent, canActivate: [AdminGuard]}
 ];
 @NgModule({
   imports: [RouterModule.forChild(employeeListRoutes)],
