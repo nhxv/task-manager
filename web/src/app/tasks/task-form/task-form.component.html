@@ -27,14 +27,14 @@
             <div class="col-12">
               <label>Employee</label>
               <br>
-              <div class="d-inline-block">
+              <div class="d-inline-block shadow-sm">
                 <!--display employee list if not in edit mode, otherwise display employee list in edit-->
-                <select class="btn rounded-sm form-control shadow-sm" *ngIf="!editMode"
-                        style="border: 1px solid #ced4da;" (ngModelChange)="onAssignEmployee($event)" formControlName="employee">
+                <select class="btn rounded-sm form-control" *ngIf="!editMode"
+                        style="border: 1px solid #dee2e6;" (ngModelChange)="onAssignEmployee($event)" formControlName="employee">
                   <option *ngFor="let employee of employeeList" [ngValue]="employee">{{employee.name}}</option>
                 </select>
-                <select class="btn rounded-sm form-control shadow-sm" *ngIf="editMode"
-                        style="border: 1px solid #ced4da;" (ngModelChange)="onAssignEmployee($event)" formControlName="employee">
+                <select class="btn rounded-sm form-control" *ngIf="editMode"
+                        style="border: 1px solid #dee2e6;" (ngModelChange)="onAssignEmployee($event)" formControlName="employee">
                   <option *ngFor="let employee of employeeListInEdit" [ngValue]="employee">{{employee.name}}</option>
                 </select>
               </div>
