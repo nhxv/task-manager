@@ -5,7 +5,7 @@ Live demo: coming soon™.
 
 ### Features
 Admin account can: 
-- create, view, edit, delete, and assign task to employees
+- create, view, edit, delete, and assign tasks to employees
 - view, delete, and search for task archives
 - view and delete employees
 - edit personal information
