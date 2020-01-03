@@ -8,6 +8,7 @@ Admin account can:
 - create, view, edit, delete, and assign task to employees
 - view, delete, and search for task archives
 - view all employees and delete employees
+- edit personal information
 
 Employee account can:
 - view, accept and complete task
