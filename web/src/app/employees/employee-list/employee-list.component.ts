@@ -5,7 +5,8 @@ import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-employee-list',
-  templateUrl: './employee-list.component.html'
+  templateUrl: './employee-list.component.html',
+  styleUrls: ['./employee-list.component.scss']
 })
 export class EmployeeListComponent implements OnInit, OnDestroy {
   employeeList: Employee[] = [];
@@ -18,6 +19,10 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     this.employeeListSub = this.employeeService.employeesChanged.subscribe((employeeData: Employee[]) => {
       this.employeeList = employeeData;
     });
+  }
+
+  onDeleteEmployee(employeeId: number) {
+    this.employeeService.deleteEmployee(employeeId);
   }
 
   ngOnDestroy(): void {

@@ -10,6 +10,7 @@
               <th scope="col">Name</th>
               <th scope="col">Email</th>
               <th scope="col">Task</th>
+              <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -18,6 +19,12 @@
               <td>{{employee.name}}</td>
               <td>{{employee.email}}</td>
               <td>{{employee.task === null ? '' : employee.task.name}}</td>
+              <td>
+                <a (click)="onDeleteEmployee(employee.id)" *ngIf="employee.id !== 1; else notShow">
+                  <i class="material-icons" style="font-size: 1rem; cursor: pointer;">clear</i>
+                </a>
+                <ng-template #notShow></ng-template>
+              </td>
             </tr>
             </tbody>
           </table>
