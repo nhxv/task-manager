@@ -14,6 +14,9 @@ Employee account can:
 - view, accept and complete assigned task
 - edit personal information
 
+Guest can:
+- create an employee account
+
 *Due to 1-1 relationship between employee and task, admin can only assign one task to each employee. 
 
 ### Built with
