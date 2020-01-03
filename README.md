@@ -1,5 +1,18 @@
 ## Task manager
-A full stack web application.
+A full stack web application allowing leader to assign tasks to employees.
+Live demo: coming soon™
+
+### Features
+Admin can: 
+- create, view, edit, delete, and assign task to employees
+- view and delete task archives
+- view and delete employees
+
+Employee can:
+- accept and complete task
+- edit personal account information
+
+*Due to 1-1 relationship between employee and task, admin can only assign 1 task to each employee 
 
 ### Built with
 HTML, CSS, SCSS, NgBootstrap, Typescript, Angular, Maven, Java, Spring Boot, Spring Security, Spring Data JPA, Hibernate Search, MySQL
