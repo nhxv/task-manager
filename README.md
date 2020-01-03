@@ -11,7 +11,7 @@ Admin account can:
 - edit personal information
 
 Employee account can:
-- view, accept and complete task
+- view, accept and complete assigned task
 - edit personal information
 
 *Due to 1-1 relationship between employee and task, admin can only assign one task to each employee. 
