@@ -1,14 +1,15 @@
 ## Task manager
 A full stack web application allowing leader to assign tasks to employees.
+
 Live demo: coming soon™
 
 ### Features
-Admin can: 
+Admin account can: 
 - create, view, edit, delete, and assign task to employees
 - view and delete task archives
 - view and delete employees
 
-Employee can:
+Employee account can:
 - accept and complete task
 - edit personal account information
 
