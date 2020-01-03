@@ -33,7 +33,7 @@
                         style="border: 1px solid #ced4da;" (ngModelChange)="onAssignEmployee($event)" formControlName="employee">
                   <option *ngFor="let employee of employeeList" [ngValue]="employee">{{employee.name}}</option>
                 </select>
-                <select class="btn rounded-0 form-control" *ngIf="editMode"
+                <select class="btn rounded-sm form-control shadow-sm" *ngIf="editMode"
                         style="border: 1px solid #ced4da;" (ngModelChange)="onAssignEmployee($event)" formControlName="employee">
                   <option *ngFor="let employee of employeeListInEdit" [ngValue]="employee">{{employee.name}}</option>
                 </select>

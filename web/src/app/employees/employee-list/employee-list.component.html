@@ -20,7 +20,7 @@
               <td>{{employee.email}}</td>
               <td>{{employee.task === null ? '' : employee.task.name}}</td>
               <td>
-                <a (click)="onDeleteEmployee(employee.id)" *ngIf="employee.id !== 1; else notShow">
+                <a (click)="onDeleteEmployee(employee)" *ngIf="employee.id !== 1; else notShow">
                   <i class="material-icons" style="font-size: 1rem; cursor: pointer;">clear</i>
                 </a>
                 <ng-template #notShow></ng-template>

@@ -10,6 +10,8 @@ import {EmployeeService} from '../employees/employee.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  errorMessage: string = '';
+
   constructor(private router: Router, private employeeService: EmployeeService) { }
 
   ngOnInit() {
@@ -26,6 +28,15 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
+    // invalid form
+    if (!this.registerForm.valid) {
+      this.errorMessage = 'Invalid submission';
+      setTimeout(() => {
+        this.errorMessage = null;
+      }, 2000);
+      return;
+    }
+
     const newEmployee: Employee = new Employee(
       this.registerForm.get('username').value,
       this.registerForm.get('password').value,

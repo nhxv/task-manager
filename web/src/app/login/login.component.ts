@@ -54,10 +54,17 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/profile']);
       }
     }, errorMessage => {
-      this.errorMessage = errorMessage;
-      setInterval(() => {
-        this.errorMessage = '';
-      }, 2000);
+      if (!this.loginForm.valid) {
+        this.errorMessage = 'Please fill in all required fields.';
+        setTimeout(() => {
+          this.errorMessage = '';
+        }, 2000);
+      } else {
+        this.errorMessage = errorMessage;
+        setTimeout(() => {
+          this.errorMessage = '';
+        }, 2000);
+      }
     });
   }
 

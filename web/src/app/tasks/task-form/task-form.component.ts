@@ -71,7 +71,16 @@ export class TaskFormComponent implements OnInit {
     // invalid form
     if (!this.taskForm.valid) {
       this.errorMessage = 'Please fill in all required fields.';
-      setInterval(() => {
+      setTimeout(() => {
+        this.errorMessage = null;
+      }, 2000);
+      return;
+    }
+
+    // no more employee to assign task
+    if (this.employeeList.length === 0 && !this.editMode) {
+      this.errorMessage = 'No employee available.';
+      setTimeout(() => {
         this.errorMessage = null;
       }, 2000);
       return;
