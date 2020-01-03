@@ -10,7 +10,7 @@ Admin account can:
 - view and delete employees
 
 Employee account can:
-- accept and complete task
+- view, accept and complete task
 - edit personal account information
 
 *Due to 1-1 relationship between employee and task, admin can only assign one task to each employee 
