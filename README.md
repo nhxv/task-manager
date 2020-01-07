@@ -22,7 +22,7 @@ Guest can:
 ### Built with
 HTML, CSS, SCSS, NgBootstrap, Typescript, Angular, Maven, Java, Spring Boot, Spring Security, Spring Data JPA, Hibernate Search, MySQL
 
-### Installation
+### Setup
 Follow these steps to run this application on your local server:
 1. Run create-user in /sql-script directory to create a new database user
 2. Run Spring boot application to create database tables
