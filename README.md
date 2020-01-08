@@ -1,11 +1,11 @@
 ## Task manager
-A full stack web application allowing leader to assign tasks to their employees.
+A full stack web application that allows manager to assign tasks to their employees.
 
-Live demo: coming soon™.
+Live demo: coming soon.
 
 ### Features
 Admin account can: 
-- create, view, edit, delete, and assign tasks to employees
+- create, view, edit, delete, archive and assign tasks to employees
 - view, delete, and search for task archives
 - view and delete employees
 - edit personal information
@@ -22,7 +22,7 @@ Guest can:
 ### Built with
 HTML, CSS, SCSS, NgBootstrap, Typescript, Angular, Maven, Java, Spring Boot, Spring Security, Spring Data JPA, Hibernate Search, MySQL
 
-### Installation
+### Setup
 Follow these steps to run this application on your local server:
 1. Run create-user in /sql-script directory to create a new database user
 2. Run Spring boot application to create database tables
