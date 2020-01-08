@@ -42,11 +42,9 @@ public class EmployeeServiceImpl implements UserDetailsService, EmployeeService 
     private Set<SimpleGrantedAuthority> getAuthority(Employee user) {
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
         user.getRoles().forEach(role -> {
-            //authorities.add(new SimpleGrantedAuthority(role.getName()));
             authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName()));
         });
         return authorities;
-        //return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
     }
 
     public List<Employee> findAll() {

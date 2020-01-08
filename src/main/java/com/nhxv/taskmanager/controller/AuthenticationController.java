@@ -27,7 +27,7 @@ public class AuthenticationController {
     @Autowired
     private EmployeeService employeeService;
 
-    @RequestMapping(value = "/get-token", method = RequestMethod.POST)
+    @PostMapping(value = "/login")
     public ApiResponse<AuthToken> getToken(@RequestBody LoginEmployee loginEmployee) throws AuthenticationException {
         final Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                         loginEmployee.getUsername(),

@@ -8,7 +8,7 @@ export class LoginService {
   constructor(private http: HttpClient) {}
 
   login(loginPayload): Observable<Object> {
-    return this.http.post<Object>('http://localhost:8080/' + 'get-token', loginPayload).pipe(catchError(this.handleError));
+    return this.http.post<Object>('http://localhost:8080/' + 'login', loginPayload).pipe(catchError(this.handleError));
   }
 
   private handleError(errorResponse: HttpErrorResponse) {

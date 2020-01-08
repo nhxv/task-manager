@@ -22,7 +22,7 @@ public class TaskArchiveSearchConfig implements ApplicationListener<ContextRefre
         try {
             fullTextEntityManager.createIndexer().startAndWait();
         } catch (InterruptedException e) {
-            System.out.println("Error occured trying to build Hibernate Search indexes " + e.toString());
+            System.out.println("Error occurred trying to build Hibernate Search indexes " + e.toString());
         }
     }
 }
