@@ -30,7 +30,7 @@ export class TaskFormComponent implements OnInit {
   }
 
   private initForm() {
-    // default add form
+    // default task form
     let name = '';
     let description = '';
     this.taskForm = new FormGroup({
@@ -44,14 +44,14 @@ export class TaskFormComponent implements OnInit {
       // set edit mode to true when there is id being passed in
       this.editMode = true;
 
-      // get the task that needed to be edited from task service
+      // get task that needed to be edited from task service
       this.editedTask = this.taskService.getTask(id);
 
       // set up employeeList in edit mode
       this.employeeListInEdit = this.employeeList.slice();
       this.employeeListInEdit.unshift(this.editedTask.employee);
 
-      //auto select employee of the edited task
+      // auto select employee of the edited task
       this.employeeSelected = this.editedTask.employee;
 
       // set value of edited task to form
@@ -94,20 +94,16 @@ export class TaskFormComponent implements OnInit {
     // to avoid violate db relationship
     this.employeeSelected.task = null;
 
-    //set task status to ASSIGN
     const status = 'ASSIGN';
-
-    // create task object for submission
     const taskInput = new Task(this.taskForm.get('name').value, this.taskForm.get('description').value, this.employeeSelected, status);
 
     // if edit mode, update task; create task otherwise
     if (this.editMode) {
-      // use editedTask.id and new edited taskInput
       this.taskService.updateTask(this.editedTask.id, taskInput);
     } else {
       this.taskService.createTask(taskInput);
     }
-    // reset the form
+    // reset form
     this.editMode = false;
     this.taskForm.reset();
     this.taskForm.get('employee').setValue(this.employeeList[0]);

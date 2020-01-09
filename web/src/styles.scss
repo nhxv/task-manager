@@ -40,6 +40,11 @@ $input-border-color: $gray-300;
   }
 }
 
+.btn-secondary {
+  background: transparent !important;
+  color: $gray-700 !important;
+}
+
 .modal-content {
   border: 0 !important;
 }
