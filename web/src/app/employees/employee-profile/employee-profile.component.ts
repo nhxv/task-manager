@@ -58,7 +58,7 @@ export class EmployeeProfileComponent implements OnInit, OnDestroy {
     let employeeClone = {...this.employee};
     employeeClone.task = null;
     const id: number = this.employee.task.id;
-    const task: Task = new Task(this.employee.task.name, this.employee.task.description, employeeClone, this.employee.task.status);
+    const task: Task = new Task(this.employee.task.name, this.employee.task.description, this.employee.task.deadline, employeeClone, this.employee.task.status);
     this.taskService.updateTask(id, task);
   }
 

@@ -2,8 +2,12 @@ package com.nhxv.taskmanager.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.nhxv.taskmanager.config.DateHandler;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
@@ -23,15 +27,24 @@ public class Task {
     @Column(name = "status")
     private String status;
 
+    @Column(name = "deadline")
+    @JsonDeserialize(using = DateHandler.class)
+    private Date deadline;
+
+    @Column(name = "date_created")
+    @CreationTimestamp
+    private Date dateCreated;
+
     @OneToOne
     @JoinColumn(name = "employee_id", referencedColumnName = "id") // foreign key
     private Employee employee;
 
     public Task() {}
 
-    public Task(String name, String description) {
+    public Task(String name, String description, Date deadline) {
         this.name = name;
         this.description = description;
+        this.deadline = deadline;
     }
 
     public long getId() {
@@ -74,6 +87,22 @@ public class Task {
         this.employee = employee;
     }
 
+    public Date getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
     @Override
     public String toString() {
         return "Task{" +
@@ -81,6 +110,8 @@ public class Task {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", status='" + status + '\'' +
+                ", deadline=" + deadline +
+                ", dateCreated=" + dateCreated +
                 ", employee=" + employee +
                 '}';
     }

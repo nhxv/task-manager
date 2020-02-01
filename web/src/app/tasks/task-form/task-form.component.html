@@ -23,17 +23,26 @@
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="task-deadline">Deadline</label>
+                <input id="task-deadline" type="date" class="form-control shadow-sm rounded-sm" min="{{currentDate}}" formControlName="deadline">
+                <span class="text-danger" *ngIf="isEmptyField('deadline')">Invalid deadline</span>
+              </div>
+            </div>
+          </div>
           <div class="row mb-3 mt-1">
             <div class="col-12">
               <label>Employee</label>
               <br>
-              <div class="d-inline-block shadow-sm">
+              <div class="d-inline-block">
                 <!--display employee list if not in edit mode, otherwise display employee list in edit-->
-                <select class="btn rounded-sm form-control" *ngIf="!editMode"
+                <select class="btn rounded-sm form-control shadow-sm" *ngIf="!editMode"
                         style="border: 1px solid #dee2e6;" (ngModelChange)="onAssignEmployee($event)" formControlName="employee">
                   <option *ngFor="let employee of employeeList" [ngValue]="employee">{{employee.name}}</option>
                 </select>
-                <select class="btn rounded-sm form-control" *ngIf="editMode"
+                <select class="btn rounded-sm form-control shadow-sm" *ngIf="editMode"
                         style="border: 1px solid #dee2e6;" (ngModelChange)="onAssignEmployee($event)" formControlName="employee">
                   <option *ngFor="let employee of employeeListInEdit" [ngValue]="employee">{{employee.name}}</option>
                 </select>

@@ -10,6 +10,7 @@
       <p class="h5 mb-1" style="text-transform: uppercase;">{{task.name}}</p>
       <p class="mb-0">{{task.description}}</p>
       <p class="mb-0">{{task.employee.name}}</p>
+      <small class="text-muted">Due at {{task.deadline}}</small>
       <button class="btn btn-success rounded-sm mt-3" type="button" (click)="onArchiveTask(task)" *ngIf="task.status === 'DONE'">Archive task</button>
     </div>
   </div>

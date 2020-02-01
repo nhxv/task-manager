@@ -45,12 +45,12 @@ public class TaskController {
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @PutMapping("/tasks/{id}")
     public ResponseEntity<Task> updateTask(@PathVariable(value = "id") Long taskId, @Valid @RequestBody Task taskUpdate) throws ResourceNotFoundException {
-        System.out.println(taskUpdate);
         Task task = taskRepository.findById(taskId).orElseThrow(() -> new ResourceNotFoundException("Task not found for this id: " + taskId));
         task.setName(taskUpdate.getName());
         task.setDescription(taskUpdate.getDescription());
         task.setStatus(taskUpdate.getStatus());
         task.setEmployee(taskUpdate.getEmployee());
+        task.setDeadline(taskUpdate.getDeadline());
         return ResponseEntity.ok(taskRepository.save(task));
     }
 

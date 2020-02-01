@@ -12,6 +12,7 @@ import {first} from 'rxjs/operators';
 })
 export class TaskFormComponent implements OnInit {
   taskForm: FormGroup;
+  currentDate: string = new Date().toISOString().slice(0, 10);
   editMode: boolean = false;
   editedTask: Task;
   employeeList: Employee[];
@@ -33,9 +34,12 @@ export class TaskFormComponent implements OnInit {
     // default task form
     let name = '';
     let description = '';
+    // current date
+    let deadline = this.currentDate;
     this.taskForm = new FormGroup({
       name: new FormControl(name, Validators.required),
       description: new FormControl(description, Validators.required),
+      deadline: new FormControl(deadline),
       employee: new FormControl(this.employeeList[0])
     });
 
@@ -58,6 +62,7 @@ export class TaskFormComponent implements OnInit {
       this.taskForm.setValue({
         name: this.editedTask.name,
         description: this.editedTask.description,
+        deadline: this.editedTask.deadline,
         employee: this.employeeListInEdit[0]
       })
     });
@@ -95,7 +100,7 @@ export class TaskFormComponent implements OnInit {
     this.employeeSelected.task = null;
 
     const status = 'ASSIGN';
-    const taskInput = new Task(this.taskForm.get('name').value, this.taskForm.get('description').value, this.employeeSelected, status);
+    const taskInput = new Task(this.taskForm.get('name').value, this.taskForm.get('description').value, this.taskForm.get('deadline').value, this.employeeSelected, status);
 
     // if edit mode, update task; create task otherwise
     if (this.editMode) {

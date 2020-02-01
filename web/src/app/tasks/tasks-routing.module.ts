@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {TasksComponent} from './tasks.component';
-import {UserGuard} from '../auth/user.guard';
 import {AdminGuard} from '../auth/admin.guard';
 
 const tasksRoutes: Routes = [
