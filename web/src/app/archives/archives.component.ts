@@ -21,7 +21,7 @@ export class ArchivesComponent implements OnInit, OnDestroy {
     this.archiveService.getArchiveList();
     this.archiveListSub = this.archiveService.archivesChanged.subscribe((archiveData: Archive[]) => {
       this.archiveList = archiveData;
-    })
+    });
   }
 
   initForm() {

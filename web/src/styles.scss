@@ -55,4 +55,8 @@ $input-border-color: $gray-300;
   font-weight: inherit;
 }
 
+.text-weight-500 {
+  font-weight: 500 !important;
+}
+
 @import "~node_modules/bootstrap/scss/bootstrap";

@@ -3,17 +3,24 @@ package com.nhxv.taskmanager.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "role")
 public class Role {
 
+    public static final String ADMIN = "ADMIN";
+    public static final String USER = "USER";
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column
     private long id;
 
     @Column
     private String name;
 
-    @Column
-    private String description;
+    public Role() {}
+
+    public Role(String name) {
+        this.name = name;
+    }
 
     public long getId() {
         return id;
@@ -29,13 +36,5 @@ public class Role {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

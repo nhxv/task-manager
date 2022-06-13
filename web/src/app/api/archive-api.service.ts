@@ -8,11 +8,11 @@ export class ArchiveApiService {
 
   constructor(private http: HttpClient) {}
 
-  findTaskArchive(query: string): Observable<Object> {
+  findTaskArchive(query: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/search?q=${query}`);
   }
 
-  getTaskArchive(id: number): Observable<Object> {
+  getTaskArchive(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 
@@ -20,11 +20,11 @@ export class ArchiveApiService {
     return this.http.get(`${this.baseUrl}`);
   }
 
-  createTaskArchive(taskArchive: Object): Observable<Object> {
+  createTaskArchive(taskArchive: any): Observable<any> {
     return this.http.post(`${this.baseUrl}`, taskArchive);
   }
 
-  updateTaskArchive(id: number, value: any): Observable<Object> {
+  updateTaskArchive(id: number, value: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/${id}`, value);
   }
 

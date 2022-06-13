@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Employee} from '../employees/employee.model'
+import {Employee} from '../employees/employee.model';
 import {Router} from '@angular/router';
 import {EmployeeService} from '../employees/employee.service';
 
@@ -10,7 +10,7 @@ import {EmployeeService} from '../employees/employee.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  errorMessage: string = '';
+  errorMessage = '';
 
   constructor(private router: Router, private employeeService: EmployeeService) { }
 
@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
       password: new FormControl('', Validators.required),
       name: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email])
-    })
+    });
   }
 
   onSubmit() {

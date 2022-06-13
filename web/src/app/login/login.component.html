@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12">
         <div class="card shadow-sm border-0 rounded-lg">
-          <div class="card-header bg-dark border-0 rounded-0 text-white">Login form</div>
+          <div class="card-header bg-dark border-0 rounded-0 text-white text-center">Login form</div>
           <div class="card-body">
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
               <div class="row">
@@ -27,12 +27,12 @@
               </div>
               <div class="row">
                 <div class="col-12">
-                  <button class="btn btn-primary rounded-sm mt-1" type="submit">Login</button>
+                  <button class="btn btn-primary rounded-sm mt-1 w-100" type="submit">Login</button>
                 </div>
               </div>
               <div class="row mt-2">
-                <div class="col-12">
-                  <small class="text-muted">Need an account? <a [routerLink]="['/register']">Register</a></small>
+                <div class="col-12 text-center">
+                  <small class="text-muted">Don't have an account? <a [routerLink]="['/register']">Register</a></small>
                 </div>
               </div>
             </form>

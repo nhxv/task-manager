@@ -12,12 +12,14 @@
 </div>
 
 <div class="row mt-4">
-  <div class="col-md-4" *ngFor="let archive of archiveList">
+  <div class="col-lg-6" *ngFor="let archive of archiveList">
     <div class="card rounded-lg shadow-sm border-0 mb-4">
       <div class="card-body">
         <button type="button" class="close text-danger" aria-label="Close" style="outline: none;" (click)="onDeleteArchive(archive.id)"><i class="material-icons" style="font-size: 20px">clear</i></button>
-        <p class="h5 mb-1" style="text-transform: uppercase;">{{archive.name}}</p>
-        <p class="mb-0">{{archive.description}}</p>
+        <p class="h5 mb-3" style="text-transform: uppercase;">{{archive.name}}</p>
+        <p class="text-weight-500 mb-0">Description</p>
+        <p style="white-space: pre-wrap">{{archive.description}}</p>
+        <p class="text-weight-500 mb-0">Done by</p>
         <p class="mb-0">{{archive.employeeName}}</p>
       </div>
     </div>

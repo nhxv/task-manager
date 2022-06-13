@@ -14,11 +14,11 @@ export class ArchiveService {
     this.archiveApiService.getTaskArchiveList().subscribe((archiveData: Archive[]) => {
       this.archives = archiveData;
       this.archivesChanged.next(this.archives.slice());
-    })
+    });
   }
 
   getArchive(id: number) {
-    for (let archive of this.archives) {
+    for (const archive of this.archives) {
       if (archive.id === id) {
         return archive;
       }
@@ -41,14 +41,14 @@ export class ArchiveService {
       this.archives.splice(deletedIndex, 1);
       // emit updated archives
       this.archivesChanged.next(this.archives.slice());
-    })
+    });
   }
 
   findArchive(query: string) {
     this.archiveApiService.findTaskArchive(query).subscribe((archiveData: Archive[]) => {
       this.archives = archiveData;
       this.archivesChanged.next(this.archives.slice());
-    })
+    });
   }
 
 }

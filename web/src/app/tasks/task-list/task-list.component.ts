@@ -40,7 +40,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
   }
 
   setTaskColor(task) {
-    switch(task.status) {
+    switch (task.status) {
       case 'ASSIGN':
         return 'bg-danger';
       case 'DOING':
@@ -48,6 +48,11 @@ export class TaskListComponent implements OnInit, OnDestroy {
       case 'DONE':
         return 'bg-success';
     }
+  }
+
+  formatDate(d) {
+    const date: Date = new Date(d);
+    return date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
   }
 
   ngOnDestroy(): void {

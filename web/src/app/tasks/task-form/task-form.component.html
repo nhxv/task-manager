@@ -1,7 +1,7 @@
 <div class="row mb-4">
   <div class="col-12">
     <div class="card border-0 rounded-lg shadow-sm">
-      <div class="card-header bg-dark text-white border-0 rounded-0">Task form</div>
+      <div class="card-header bg-dark text-white border-0 rounded-0 text-center">Task form</div>
       <div class="card-body">
         <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
           <div class="row">
@@ -36,7 +36,7 @@
             <div class="col-12">
               <label>Employee</label>
               <br>
-              <div class="d-inline-block">
+              <div class="d-inline-block w-100">
                 <!--display employee list if not in edit mode, otherwise display employee list in edit-->
                 <select class="btn rounded-sm form-control shadow-sm" *ngIf="!editMode"
                         style="border: 1px solid #dee2e6;" (ngModelChange)="onAssignEmployee($event)" formControlName="employee">
@@ -51,7 +51,7 @@
           </div>
           <div class="row">
             <div class="col-12">
-              <button type="submit" class="btn btn-primary rounded-sm mt-1">{{editMode ? 'Update task' : 'Create task'}}</button>
+              <button type="submit" class="btn btn-primary rounded-sm mt-1 w-100">{{editMode ? 'Update task' : 'Create task'}}</button>
             </div>
           </div>
         </form>

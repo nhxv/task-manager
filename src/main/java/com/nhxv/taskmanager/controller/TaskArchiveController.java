@@ -3,11 +3,12 @@ package com.nhxv.taskmanager.controller;
 import com.nhxv.taskmanager.exception.ResourceNotFoundException;
 import com.nhxv.taskmanager.model.TaskArchive;
 import com.nhxv.taskmanager.repository.TaskArchiveRepository;
-import com.nhxv.taskmanager.service.TaskArchiveService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -19,12 +20,9 @@ import java.util.Map;
 @CrossOrigin(origins = "*")
 public class TaskArchiveController {
     private TaskArchiveRepository taskArchiveRepository;
-    private TaskArchiveService taskArchiveService;
-
     @Autowired
-    public TaskArchiveController(TaskArchiveRepository taskArchiveRepository, TaskArchiveService taskArchiveService) {
+    public TaskArchiveController(TaskArchiveRepository taskArchiveRepository) {
         this.taskArchiveRepository = taskArchiveRepository;
-        this.taskArchiveService = taskArchiveService;
     }
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -43,10 +41,7 @@ public class TaskArchiveController {
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/task-archives/search")
     public List<TaskArchive> findTaskArchives(@RequestParam(value="q", required = false) String searchText) {
-        if (searchText == null) {
-            return null;
-        }
-        return taskArchiveService.findTaskArchives(searchText);
+        return this.taskArchiveRepository.findByNameContaining(searchText);
     }
 
     @PreAuthorize("hasRole('ADMIN')")

@@ -15,5 +15,4 @@ export class HeaderComponent {
     this.isNavbarCollapsed = !this.isNavbarCollapsed;
     this.isOpen = !this.isOpen;
   }
-
 }

@@ -9,5 +9,4 @@ export class Employee {
     public task?: Task,
     public id?: number
   ) {}
-
 }
