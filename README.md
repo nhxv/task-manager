@@ -1,10 +1,21 @@
 ## Task manager
-A full stack web application that allows manager to assign tasks to their employees.
+A fullstack web application that allows manager to assign tasks to their employees.
 
 Live demo: coming soon.
 
-### Features
-Admin account can: 
+### Built with
+HTML, CSS, SCSS, NgBootstrap, Typescript, Angular, Maven, Java, Spring Boot, Spring Security, Spring Data JPA, Hibernate Search, MySQL
+
+### How to run locally
+
+    - run create-user in /sql-script directory to create a new database user
+    - run Spring boot application to create database tables
+    - Run init in /sql-script directory to create an admin account (username: admin, password: password)
+    - Run Angular dev server with command ng serve in /web directory
+
+### Main features
+Admin account can:
+
 - create, view, edit, delete, archive and assign tasks to employees
 - view, delete, and search for task archives
 - view and delete employees
@@ -17,17 +28,7 @@ Employee account can:
 Guest can:
 - create an employee account
 
-*Due to 1-1 relationship between employee and task, admin can only assign one task to each employee. 
-
-### Built with
-HTML, CSS, SCSS, NgBootstrap, Typescript, Angular, Maven, Java, Spring Boot, Spring Security, Spring Data JPA, Hibernate Search, MySQL
-
-### Setup
-Follow these steps to run this application on your local server:
-1. Run create-user in /sql-script directory to create a new database user
-2. Run Spring boot application to create database tables
-3. Run init in /sql-script directory to create an admin account (username: admin, password: password)
-4. Run Angular dev server with command ng serve in /web directory
+(*) Due to business requirement, employee only work on one task at a time.
 
 
 
