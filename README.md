@@ -12,10 +12,11 @@ HTML, CSS, SCSS, NgBootstrap, Typescript, Angular, Maven, Java, Spring Boot, Spr
     - run Spring application to create database tables
     - run init in /sql-script folder to create admin account
     - open /web folder and run Angular server
-
+    
 ---
 
 Admin account: 
+
 admin
 
 password
